@@ -3,6 +3,7 @@
     "types": ["@emotion/react/types/css-prop"],
     "target": "es5",
     "module": "commonjs",
+    "lib": ["ES2017"],
     "allowJs": true,
     "jsx": "preserve",
     "strict": true,
