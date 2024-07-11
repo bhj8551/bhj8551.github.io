@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My RPG Blog</title>
+    <style>
+        .exp-container {
+            width: 300px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .category,
+        .subcategory {
+            margin-bottom: 10px;
+        }
+
+        .category h3,
+        .subcategory h4 {
+            margin: 0;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .subcategory h4 {
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        .exp-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .exp-fill {
+            height: 20px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .level {
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .subcategory-container {
+            margin-left: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to My RPG Blog</h1>
+    <div class="exp-container" id="exp-container">
+        <!-- Categories will be added here -->
+    </div>
+    <div class="button-container">
+        <input type="text" id="new-category" placeholder="New Category" />
+        <button onclick="addCategory()">Add Category</button>
+    </div>
+
+    <script>
+        const expData = {};
+
+        function toggleSubcategories(category) {
+            const subcategoryContainer = document.getElementById(`${category}-subcategories`);
+            if (subcategoryContainer.style.display === 'none') {
+                subcategoryContainer.style.display = 'block';
+            } else {
+                subcategoryContainer.style.display = 'none';
+            }
+        }
+
+        function gainExp(category, isSubcategory = false, parentCategory = null) {
+            if (isSubcategory) {
+                expData[parentCategory].subcategories[category].exp += 10;
+                if (expData[parentCategory].subcategories[category].exp >= 100) {
+                    expData[parentCategory].subcategories[category].exp = 0;
+                    expData[parentCategory].subcategories[category].level += 1;
+                    alert(category + ' leveled up to ' + expData[parentCategory].subcategories[category].level);
+                }
+                updateExpBar(category, true, parentCategory);
+                updateParentCategoryExp(parentCategory);
+            } else {
+                expData[category].exp += 10;
+                if (expData[category].exp >= 100) {
+                    expData[category].exp = 0;
+                    expData[category].level += 1;
+                    alert(category + ' leveled up to ' + expData[category].level);
+                }
+                updateExpBar(category);
+            }
+        }
+
+        function updateExpBar(category, isSubcategory = false, parentCategory = null) {
+            if (isSubcategory) {
+                const expPercent = expData[parentCategory].subcategories[category].exp + '%';
+                document.getElementById(parentCategory + '-' + category + '-exp').style.width = expPercent;
+                document.getElementById(parentCategory + '-' + category + '-exp').innerText = expPercent;
+                document.getElementById(parentCategory + '-' + category + '-level').innerText = 'Level: ' + expData[parentCategory].subcategories[category].level;
+            } else {
+                const expPercent = expData[category].exp + '%';
+                document.getElementById(category + '-exp').style.width = expPercent;
+                document.getElementById(category + '-exp').innerText = expPercent;
+                document.getElementById(category + '-level').innerText = 'Level: ' + expData[category].level;
+            }
+        }
+
+        function updateParentCategoryExp(parentCategory) {
+            let totalExp = 0;
+            let totalLevels = 0;
+            for (let subcategory in expData[parentCategory].subcategories) {
+                totalExp += expData[parentCategory].subcategories[subcategory].exp;
+                totalLevels += expData[parentCategory].subcategories[subcategory].level;
+            }
+            expData[parentCategory].exp = totalExp;
+            expData[parentCategory].level = totalLevels;
+            updateExpBar(parentCategory);
+        }
+
+        function addCategory() {
+            const category = document.getElementById('new-category').value;
+            if (category && !expData[category]) {
+                expData[category] = { exp: 0, level: 1, subcategories: {} };
+                const container = document.getElementById('exp-container');
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+                categoryDiv.innerHTML = `
+                    <h3 onclick="toggleSubcategories('${category}')">${category}</h3>
+                    <div class="exp-bar">
+                        <div class="exp-fill" id="${category}-exp">0%</div>
+                    </div>
+                    <div class="level" id="${category}-level">Level: 1</div>
+                    <button onclick="gainExp('${category}')">Gain ${category} Exp</button>
+                    <button onclick="removeCategory('${category}')">Remove ${category}</button>
+                    <button onclick="addSubcategory('${category}')">Add Subcategory</button>
+                    <div class="subcategory-container" id="${category}-subcategories"></div>
+                `;
+                container.appendChild(categoryDiv);
+                document.getElementById('new-category').value = '';
+            }
+        }
+
+        function addSubcategory(parentCategory) {
+            const subcategory = prompt('Enter subcategory name:');
+            if (subcategory && !expData[parentCategory].subcategories[subcategory]) {
+                expData[parentCategory].subcategories[subcategory] = { exp: 0, level: 1 };
+                const subcategoryContainer = document.getElementById(`${parentCategory}-subcategories`);
+                const subcategoryDiv = document.createElement('div');
+                subcategoryDiv.className = 'subcategory';
+                subcategoryDiv.innerHTML = `
+                    <h4>${subcategory}</h4>
+                    <div class="exp-bar">
+                        <div class="exp-fill" id="${parentCategory}-${subcategory}-exp">0%</div>
+                    </div>
+                    <div class="level" id="${parentCategory}-${subcategory}-level">Level: 1</div>
+                    <button onclick="gainExp('${subcategory}', true, '${parentCategory}')">Gain ${subcategory} Exp</button>
+                    <button onclick="removeSubcategory('${subcategory}', '${parentCategory}')">Remove ${subcategory}</button>
+                `;
+                subcategoryContainer.appendChild(subcategoryDiv);
+            }
+        }
+
+        function removeCategory(category) {
+            delete expData[category];
+            const categoryDiv = document.getElementById(category + '-exp').parentElement.parentElement;
+            categoryDiv.remove();
+        }
+
+        function removeSubcategory(subcategory, parentCategory) {
+            delete expData[parentCategory].subcategories[subcategory];
+            const subcategoryDiv = document.getElementById(`${parentCategory}-${subcategory}-exp`).parentElement.parentElement;
+            subcategoryDiv.remove();
+            updateParentCategoryExp(parentCategory);
+        }
+    </script>
+</body>
+
+</html>
