@@ -1,194 +1,436 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="ja">
 <head>
-    <title>My RPG Blog</title>
-    <style>
-        .exp-container {
-            width: 300px;
-            margin: 20px auto;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .category,
-        .subcategory {
-            margin-bottom: 10px;
-        }
-
-        .category h3,
-        .subcategory h4 {
-            margin: 0;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .subcategory h4 {
-            font-size: 16px;
-            margin-left: 10px;
-        }
-
-        .exp-bar {
-            width: 100%;
-            background-color: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .exp-fill {
-            height: 20px;
-            background-color: #4CAF50;
-            text-align: center;
-            line-height: 20px;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .level {
-            font-size: 14px;
-            margin-top: 5px;
-            text-align: right;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .subcategory-container {
-            margin-left: 20px;
-            display: none;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>業務自動化ツール開発｜PDF・Excel・メール・Webの手作業を自動化</title>
+<meta name="description" content="請求書PDFの転記、問い合わせメールの仕分け、競合サイトの価格チェック、管理画面への入力など、中小企業の事務作業を自動化するツールを開発します。検算と「要確認」の表示で、結果を人が確認しやすい形でお渡しします。">
+<link rel="canonical" href="https://bhj8551.github.io/">
+<link rel="alternate" hreflang="ja" href="https://bhj8551.github.io/">
+<link rel="alternate" hreflang="en" href="https://bhj8551.github.io/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="業務自動化ツール開発">
+<meta property="og:title" content="業務自動化ツール開発｜PDF・Excel・メール・Webの手作業を自動化">
+<meta property="og:description" content="帳票データの取り出し、AIによる問い合わせの仕分け、Web監視・管理画面への自動入力。結果を人が確認しやすい形で自動化します。">
+<meta property="og:url" content="https://bhj8551.github.io/">
+<meta property="og:image" content="https://bhj8551.github.io/assets/img/og/og-top.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="業務自動化ツール開発：PDF・Excel・メール・Webの手作業を、確認しやすい形で自動化">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f4e79">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/style.css">
 </head>
-
 <body>
-    <h1>Welcome to My RPG Blog</h1>
-    <div class="exp-container" id="exp-container">
-        <!-- Categories will be added here -->
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" alt="" width="32" height="32">
+      <span>業務自動化ツール開発<small>PDF・Excel・メール・Webの手作業を減らす</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="/#services">サービス</a></li>
+        <li><a href="/#strengths">強み</a></li>
+        <li><a href="/#process">進め方</a></li>
+        <li><a href="/#faq">よくある質問</a></li>
+        <li><a href="/#profile">プロフィール</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== ヒーロー ===== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">業務自動化ツールの開発</span>
+        <h1 id="hero-title"><span class="ib">毎月の「手作業」を、</span><span class="ib">確認しやすい形で</span><span class="ib">自動化します。</span></h1>
+        <p class="lead">PDFの請求書の転記、問い合わせメールの仕分け、競合サイトの価格チェック、管理画面への入力。プログラミングを知らなくても使えるツールを、お客様の業務に合わせてお作りします。結果には検算や「要確認」の印を付け、最後は人が確認できる形でお渡しします。</p>
+        <div class="hero-actions">
+          <a class="btn" href="#services">サービスを見る</a>
+          <a class="btn btn--ghost" href="#process">ご依頼の流れ</a>
+        </div>
+        <ul class="hero-tags" aria-label="対応している主な技術・環境">
+          <li><span class="chip">Python</span></li>
+          <li><span class="chip">Google Apps Script（GAS）</span></li>
+          <li><span class="chip">Excel・CSV 出力</span></li>
+          <li><span class="chip">Windows / Mac</span></li>
+        </ul>
+      </div>
+
+      <div class="sample-card" role="group" aria-labelledby="sample-title">
+        <header>
+          <strong id="sample-title">帳票の読み取り結果の例</strong>
+          <span class="badge-demo">架空のデモ</span>
+        </header>
+        <ul class="sample-rows">
+          <li><span class="from">令和7年1月29日</span><span class="to"><span class="arrow" aria-hidden="true">→</span><span class="visually-hidden">変換後：</span>2025-01-29</span></li>
+          <li><span class="from">みずなら産業(株)</span><span class="to"><span class="arrow" aria-hidden="true">→</span><span class="visually-hidden">変換後：</span>みずなら産業株式会社</span></li>
+          <li><span class="from">¥53,323-</span><span class="to"><span class="arrow" aria-hidden="true">→</span><span class="visually-hidden">変換後：</span>53323</span></li>
+          <li><span class="from">▲¥14,400（返品）</span><span class="to"><span class="arrow" aria-hidden="true">→</span><span class="visually-hidden">変換後：</span>-14400</span></li>
+          <li><span class="from">０６−０９８７−６５４３</span><span class="to"><span class="arrow" aria-hidden="true">→</span><span class="visually-hidden">変換後：</span>06-0987-6543</span></li>
+        </ul>
+        <p class="sample-check"><span class="badge-check">要確認</span> 小計＋消費税（38,578）と合計（38,588）が一致しません</p>
+        <footer>帳票データ取り出しツールで架空のサンプル帳票を処理したときの、実際の出力です。会社名・番号は架空です。</footer>
+      </div>
     </div>
-    <div class="button-container">
-        <input type="text" id="new-category" placeholder="New Category" />
-        <button onclick="addCategory()">Add Category</button>
+  </section>
+
+  <!-- ===== サービス（ツール3つ） ===== -->
+  <section class="section" id="services" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">SERVICES</span>
+        <h2 id="services-title">ご提供しているツール</h2>
+        <p>よくある3つの手作業について、実際に動くツールを用意しています。お客様の帳票・通知先・入力先に合わせて設定・調整してお渡しします。</p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card card--tool">
+          <svg class="card-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <rect x="8" y="4" width="26" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M14 13h14M14 20h14M14 27h8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="24" y="26" width="18" height="16" rx="2" fill="var(--surface)" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M24 32h18M30 26v16" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <div class="card-body">
+            <h3>帳票データ取り出しツール</h3>
+            <p class="subtitle">PDF・Excel・CSV → 1件1行のCSVと確認用Excel</p>
+            <p><strong>こんな作業に：</strong>取引先ごとに形式が違う請求書・納品書・注文一覧を、毎月Excelに手で打ち直している</p>
+            <ul class="card-list">
+              <li>文字の位置から表の列を判定するので、列の順番が崩れません</li>
+              <li>和暦→西暦、「㈱」→「株式会社」などの表記をそろえます（元の値も残します）</li>
+              <li>合計や明細を検算し、合わない行だけを「要確認」にします</li>
+            </ul>
+            <ul class="card-tags" aria-label="技術・環境">
+              <li><span class="chip">Python</span></li>
+              <li><span class="chip">Windows・Mac</span></li>
+              <li><span class="chip">インターネット接続不要</span></li>
+            </ul>
+          </div>
+          <div class="card-foot"><a class="btn btn--ghost" href="/works/chohyo/">詳しく見る<span class="visually-hidden">（帳票データ取り出しツール）</span></a></div>
+        </article>
+
+        <article class="card card--tool">
+          <svg class="card-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <rect x="4" y="10" width="32" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M5 12l15 11 15-11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="37" cy="34" r="9" fill="var(--surface)" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M33 34h8M37 30v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div class="card-body">
+            <h3>AI 受付アシスタント</h3>
+            <p class="subtitle">Gmail・Google フォーム ＋ 生成AIで、問い合わせの仕分け・通知・返信下書き</p>
+            <p><strong>こんな作業に：</strong>問い合わせを毎朝読んで担当者に振り分け、返信文を毎回ゼロから書いている</p>
+            <ul class="card-list">
+              <li>分類・緊急度・要約・期限を判定し、担当者に Slack や Chatwork などで通知します</li>
+              <li>個人情報を記号に置き換えてから AI に送ります</li>
+              <li>返信は Gmail の下書きを作るだけ。自動送信は既定でオフです</li>
+            </ul>
+            <ul class="card-tags" aria-label="技術・環境">
+              <li><span class="chip">Google Apps Script</span></li>
+              <li><span class="chip">スプレッドシート</span></li>
+              <li><span class="chip">Claude・OpenAI・Gemini</span></li>
+            </ul>
+          </div>
+          <div class="card-foot"><a class="btn btn--ghost" href="/works/ai-inbox/">詳しく見る<span class="visually-hidden">（AI 受付アシスタント）</span></a></div>
+        </article>
+
+        <article class="card card--tool">
+          <svg class="card-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <rect x="4" y="6" width="40" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M4 13h40" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M10 30l7-8 6 5 8-10 7 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 42h16M24 36v6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <div class="card-body">
+            <h3>Web監視・入力自動化ツール</h3>
+            <p class="subtitle">価格・在庫・新着の定期チェック ＋ CSVから管理画面への自動入力</p>
+            <p><strong>こんな作業に：</strong>競合サイトの価格や在庫を毎朝確認している／管理画面に CSV を見ながら1件ずつ入力している</p>
+            <ul class="card-list">
+              <li>前回との違い（新着・価格・在庫・掲載終了）を Excel に色分けし、変化があったときだけ通知します</li>
+              <li>サイトの構造変更を検知して、誤ったデータを比較の基準にしません</li>
+              <li>CSV の未処理の行だけを管理画面に入力し、結果を CSV に書き戻します</li>
+            </ul>
+            <ul class="card-tags" aria-label="技術・環境">
+              <li><span class="chip">Python</span></li>
+              <li><span class="chip">Edge・Chrome</span></li>
+              <li><span class="chip">Windows・Mac</span></li>
+            </ul>
+          </div>
+          <div class="card-foot"><a class="btn btn--ghost" href="/works/web-monitor/">詳しく見る<span class="visually-hidden">（Web監視・入力自動化ツール）</span></a></div>
+        </article>
+      </div>
+
+      <p class="note" style="margin-top:24px">各ツールの画面・出力例は、ツールの動きをお見せするために<strong>架空のデモデータ</strong>で動かしたものです。実在の企業・店舗・導入実績ではありません。</p>
     </div>
+  </section>
 
-    <script>
-        const expData = {};
+  <!-- ===== 強み ===== -->
+  <section class="section section--alt" id="strengths" aria-labelledby="strengths-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">STRENGTHS</span>
+        <h2 id="strengths-title">自動化した「その後」まで考えて作ります</h2>
+        <p>自動化しても、結果を全部見直すなら手間は減りません。間違いに気づける仕組みと、人が最終確認できる流れを最初から組み込みます。</p>
+      </div>
+      <div class="grid grid--2">
+        <article class="card">
+          <span class="strength-num" aria-hidden="true">1</span>
+          <h3>検算と「要確認」で、結果をすべて見直す必要がありません</h3>
+          <p>帳票の読み取り結果は「小計＋消費税＝合計」「数量×単価＝金額」などを自動で検算し、合わない行だけを<span class="badge-check">要確認</span>として理由と一緒に表示します。確認はその行を元の帳票と見比べるだけです。</p>
+          <p class="source">該当ツール：<a href="/works/chohyo/">帳票データ取り出しツール</a>、<a href="/works/web-monitor/">Web監視・入力自動化</a>（登録の途中で止まった行は二重登録を避けて「要確認」に）</p>
+        </article>
+        <article class="card">
+          <span class="strength-num" aria-hidden="true">2</span>
+          <h3>個人情報は記号に置き換えてから AI へ。最終確認は人が行います</h3>
+          <p>メールアドレス・電話番号・住所・氏名などを <code>[メール1]</code> のような記号に置き換えてから AI に送ります。返信は Gmail の下書きを作るところまでで、送信は担当者が内容を確認して行います。</p>
+          <p class="source">該当ツール：<a href="/works/ai-inbox/">AI 受付アシスタント</a>（マスキングはパターンによる検出のため、すべての個人情報を確実に検出できるわけではありません）</p>
+        </article>
+        <article class="card">
+          <span class="strength-num" aria-hidden="true">3</span>
+          <h3>サイトの構造変更を検知し、誤ったデータをためません</h3>
+          <p>取得件数の急な減少や、価格などの必須項目が取れなくなったことを検知すると「構造変更の可能性」をお知らせし、その回のデータは比較の基準に使いません。リニューアル後に空の値を記録し続ける事態を防ぎます。</p>
+          <p class="source">該当ツール：<a href="/works/web-monitor/">Web監視・入力自動化</a></p>
+        </article>
+        <article class="card">
+          <span class="strength-num" aria-hidden="true">4</span>
+          <h3>サンプルで無料の精度チェックをしてからお見積り</h3>
+          <p>実際の帳票のサンプル（個人情報は伏せた状態で可）で読み取りを試し、結果と精度をご確認いただいてからお見積りします。架空のサンプルでの計測値は、お客様の帳票での精度を保証するものではないからです。</p>
+          <p class="source">精度の計測方法は <a href="/works/chohyo/#accuracy">帳票データ取り出しツールの「精度・処理時間」</a> をご覧ください。</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        function toggleSubcategories(category) {
-            const subcategoryContainer = document.getElementById(`${category}-subcategories`);
-            if (subcategoryContainer.style.display === 'none') {
-                subcategoryContainer.style.display = 'block';
-            } else {
-                subcategoryContainer.style.display = 'none';
-            }
-        }
+  <!-- ===== 進め方 ===== -->
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">PROCESS</span>
+        <h2 id="process-title">ご依頼の流れ</h2>
+        <p>いきなり開発を始めることはありません。まずお客様のサンプルで「どこまでできるか」を確かめてから、お見積りします。</p>
+      </div>
+      <ol class="steps steps--6">
+        <li>
+          <h3>ご相談</h3>
+          <p>今の作業の流れ、使っているファイル（PDF・Excel・メールなど）、件数、困っていることをお聞かせください。</p>
+        </li>
+        <li>
+          <h3>サンプルで無料精度チェック</h3>
+          <p>実際のファイルのサンプル（個人情報は伏せた状態で可）で試し、読み取りや判定の結果をご報告します。</p>
+        </li>
+        <li>
+          <h3>お見積り</h3>
+          <p>対象の種類・件数・出力形式・通知先などをもとに、作業範囲・費用・納期をご提示します。</p>
+        </li>
+        <li>
+          <h3>開発・中間報告</h3>
+          <p>お客様の業務に合わせて設定・開発し、途中経過をご報告します。テスト実行の結果を見ていただきながら調整します。</p>
+        </li>
+        <li>
+          <h3>納品・操作説明</h3>
+          <p>すぐ使える形でお渡しし、操作マニュアルとあわせて使い方をご説明します。</p>
+        </li>
+        <li>
+          <h3>納品後2週間の不具合対応</h3>
+          <!-- EDIT: 不具合対応の条件（期間・無償かどうか等）を変える場合はここを修正してください -->
+          <p>納品後2週間は、読み取りの不具合や操作上の問題に対応します。</p>
+          <!-- /EDIT -->
+        </li>
+      </ol>
+      <p class="note" style="margin-top:20px">Webサイトの監視や管理画面への入力をご依頼いただく場合は、事前に対象サイトの利用規約と robots.txt（サイト運営者が自動アクセスについて示すルール）、管理画面の操作権限を確認します。</p>
+    </div>
+  </section>
 
-        function gainExp(category, isSubcategory = false, parentCategory = null) {
-            if (isSubcategory) {
-                expData[parentCategory].subcategories[category].exp += 10;
-                if (expData[parentCategory].subcategories[category].exp >= 100) {
-                    expData[parentCategory].subcategories[category].exp = 0;
-                    expData[parentCategory].subcategories[category].level += 1;
-                    alert(category + ' leveled up to ' + expData[parentCategory].subcategories[category].level);
-                }
-                updateExpBar(category, true, parentCategory);
-                updateParentCategoryExp(parentCategory);
-            } else {
-                expData[category].exp += 10;
-                if (expData[category].exp >= 100) {
-                    expData[category].exp = 0;
-                    expData[category].level += 1;
-                    alert(category + ' leveled up to ' + expData[category].level);
-                }
-                updateExpBar(category);
-            }
-        }
+  <!-- EDIT: 料金を掲載する場合は、下のコメントを外して金額を記入してください（現在は非表示）。
+  <section class="section section--alt" id="price" aria-labelledby="price-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">PRICE</span>
+        <h2 id="price-title">料金の目安</h2>
+        <p>内容・件数により変わります。サンプルでの確認後に正式なお見積りをお出しします。</p>
+      </div>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">メニュー</th><th scope="col">内容</th><th scope="col" class="num">料金（税込）</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" data-label="メニュー">帳票データ取り出し</th><td data-label="内容">帳票1種類のテンプレート作成・納品</td><td class="num" data-label="料金">○○円〜</td></tr>
+            <tr><th scope="row" data-label="メニュー">AI 受付アシスタント</th><td data-label="内容">初期構築・試験運用の調整</td><td class="num" data-label="料金">○○円〜</td></tr>
+            <tr><th scope="row" data-label="メニュー">Web監視・入力自動化</th><td data-label="内容">監視サイト1件／入力画面1件の設定</td><td class="num" data-label="料金">○○円〜</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  /EDIT -->
 
-        function updateExpBar(category, isSubcategory = false, parentCategory = null) {
-            if (isSubcategory) {
-                const expPercent = expData[parentCategory].subcategories[category].exp + '%';
-                document.getElementById(parentCategory + '-' + category + '-exp').style.width = expPercent;
-                document.getElementById(parentCategory + '-' + category + '-exp').innerText = expPercent;
-                document.getElementById(parentCategory + '-' + category + '-level').innerText = 'Level: ' + expData[parentCategory].subcategories[category].level;
-            } else {
-                const expPercent = expData[category].exp + '%';
-                document.getElementById(category + '-exp').style.width = expPercent;
-                document.getElementById(category + '-exp').innerText = expPercent;
-                document.getElementById(category + '-level').innerText = 'Level: ' + expData[category].level;
-            }
-        }
+  <!-- ===== よくある質問 ===== -->
+  <section class="section section--alt" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faq-title">よくある質問</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>プログラミングの知識がなくても使えますか？</summary>
+          <div class="answer"><p>はい。帳票データ取り出しツールは「ファイルを選ぶ → 変換する」の画面操作、Web監視・入力自動化ツールはダブルクリックで開くメニュー、AI 受付アシスタントはスプレッドシートのメニューから操作します。操作マニュアルもお付けします。</p></div>
+        </details>
+        <details>
+          <summary>費用はどのくらいかかりますか？</summary>
+          <div class="answer"><p>帳票・問い合わせ・監視サイトの種類や件数、必要な出力形式によって変わるため、サンプルで確認したうえでお見積りします。サンプルでの精度チェックは無料です。</p></div>
+        </details>
+        <details>
+          <summary>社内のパソコンで動きますか？</summary>
+          <div class="answer">
+            <ul>
+              <li>帳票データ取り出しツール：Windows 10 / 11（64ビット）、Mac（Apple シリコン。Intel 搭載の Mac は別のファイルをお渡しします）</li>
+              <li>Web監視・入力自動化ツール：Windows / Mac。パソコンにインストール済みの Microsoft Edge または Google Chrome を使います</li>
+              <li>AI 受付アシスタント：Google アカウント（Google Workspace を含む）のスプレッドシート上で動きます。サーバーは不要です</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>データが外部に送られることはありますか？</summary>
+          <div class="answer"><p>帳票データ取り出しツールは、お使いのパソコンの中だけで処理し、データを外部に送信しません。AI 受付アシスタントは、件名と本文（個人情報を記号に置き換えた後）だけを、お選びいただいた AI 事業者に送ります。Web監視ツールは、監視対象のサイトにアクセスします。</p></div>
+        </details>
+        <details>
+          <summary>AI の判定は正確ですか？</summary>
+          <div class="answer"><p>精度 100% を保証するものではありません。そのため返信は下書きの作成まで、期限があいまいなものは「要確認」と表示し、最終的な判断と送信は担当者が行う運用を前提にしています。</p></div>
+        </details>
+        <details>
+          <summary>納品後に帳票の形式やサイトのデザインが変わったら？</summary>
+          <div class="answer"><p>帳票は「テンプレート」と呼ぶ設定ファイルで読み取り位置を決めているため、設定の追加・調整で対応できます。監視しているサイトのデザインが変わった場合も、設定の修正で対応します。納品後2週間を過ぎてからの変更や保守は、別途ご相談ください。</p></div>
+        </details>
+        <details>
+          <summary>メールアドレスや電話番号を教えてもらえますか？</summary>
+          <div class="answer"><p>クラウドソーシングでは、契約前に直接の連絡先をやり取りすることが禁止されているため、このサイトには掲載していません。各プラットフォームのメッセージ機能からご連絡ください。</p></div>
+        </details>
+        <details>
+          <summary>掲載されている事例は、実際の導入実績ですか？</summary>
+          <div class="answer"><p>いいえ。このサイトの画面・出力例・会社名・商品名は、すべてツールの動きをお見せするための架空のデモです。ツールのソースコードは公開していません。</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
 
-        function updateParentCategoryExp(parentCategory) {
-            let totalExp = 0;
-            let totalLevels = 0;
-            for (let subcategory in expData[parentCategory].subcategories) {
-                totalExp += expData[parentCategory].subcategories[subcategory].exp;
-                totalLevels += expData[parentCategory].subcategories[subcategory].level;
-            }
-            expData[parentCategory].exp = totalExp;
-            expData[parentCategory].level = totalLevels;
-            updateExpBar(parentCategory);
-        }
+  <!-- ===== プロフィール ===== -->
+  <section class="section" id="profile" aria-labelledby="profile-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">PROFILE</span>
+        <h2 id="profile-title">プロフィール</h2>
+      </div>
+      <div class="profile">
+        <div class="card">
+          <dl class="dl-grid">
+            <div>
+              <dt>表示名</dt>
+              <!-- EDIT: 表示名（例：山田 太郎 / ニックネーム） -->
+              <dd><span class="todo">要入力</span></dd>
+              <!-- /EDIT -->
+            </div>
+            <div>
+              <dt>経歴</dt>
+              <!-- EDIT: プロフィール文（公開してよい範囲で）。例：日本のIT企業で映像解析サービスの実現可能性検証・PoC開発・簡易ツール作成を担当。韓国・慶北大学校 コンピュータ学部卒。 -->
+              <dd><span class="todo">要入力</span></dd>
+              <!-- /EDIT -->
+            </div>
+            <div>
+              <dt>所在地</dt>
+              <!-- EDIT: 所在地（例：宮城県仙台市）。表示しない場合はこの <div> ごと削除してください -->
+              <dd><span class="todo">要入力</span></dd>
+              <!-- /EDIT -->
+            </div>
+            <div>
+              <dt>対応言語</dt>
+              <!-- EDIT: 対応言語（例：日本語・韓国語・英語） -->
+              <dd><span class="todo">要入力</span></dd>
+              <!-- /EDIT -->
+            </div>
+          </dl>
+        </div>
+        <div class="card">
+          <h3>使っている技術</h3>
+          <ul class="card-list">
+            <li>Python（PDF・Excel・CSVの処理、Web監視、ブラウザ操作の自動化）</li>
+            <li>Google Apps Script（Gmail・スプレッドシートなど Google のサービス上で動くプログラム）</li>
+            <li>生成AIの API（他のサービスから AI を呼び出す仕組み）：Claude / OpenAI / Gemini</li>
+            <li>Playwright（ブラウザを自動で操作するためのライブラリ）</li>
+          </ul>
+          <h3>作り方で大切にしていること</h3>
+          <ul class="card-list mb-0">
+            <li>架空のサンプルで精度を実際に計測し、限界も含めて記録する</li>
+            <li>自動テストで動作を確認してからお渡しする</li>
+            <li>プログラミングを知らない方向けの操作マニュアルを用意する</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        function addCategory() {
-            const category = document.getElementById('new-category').value;
-            if (category && !expData[category]) {
-                expData[category] = { exp: 0, level: 1, subcategories: {} };
-                const container = document.getElementById('exp-container');
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'category';
-                categoryDiv.innerHTML = `
-                    <h3 onclick="toggleSubcategories('${category}')">${category}</h3>
-                    <div class="exp-bar">
-                        <div class="exp-fill" id="${category}-exp">0%</div>
-                    </div>
-                    <div class="level" id="${category}-level">Level: 1</div>
-                    <button onclick="gainExp('${category}')">Gain ${category} Exp</button>
-                    <button onclick="removeCategory('${category}')">Remove ${category}</button>
-                    <button onclick="addSubcategory('${category}')">Add Subcategory</button>
-                    <div class="subcategory-container" id="${category}-subcategories"></div>
-                `;
-                container.appendChild(categoryDiv);
-                document.getElementById('new-category').value = '';
-            }
-        }
+  <!-- ===== お問い合わせ ===== -->
+  <section class="section section--alt" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-box">
+        <h2 id="contact-title">お問い合わせ</h2>
+        <p>ご相談・お見積りのご依頼は、ご利用中のプラットフォームのメッセージ機能からお願いします。</p>
+        <div class="platforms">
+          <!-- EDIT: ランサーズのプロフィールURL。決まったら下の span を <a class="btn" href="https://www.lancers.jp/profile/（ID）">ランサーズで相談する</a> に置き換えてください -->
+          <span class="btn btn--pending">ランサーズ（URL要入力）</span>
+          <!-- /EDIT -->
+          <!-- EDIT: クラウドワークスのプロフィールURL。決まったら下の span を <a class="btn" href="https://crowdworks.jp/public/employees/（ID）">クラウドワークスで相談する</a> に置き換えてください -->
+          <span class="btn btn--pending">クラウドワークス（URL要入力）</span>
+          <!-- /EDIT -->
+          <!-- EDIT: ココナラのプロフィールURL。決まったら下の span を <a class="btn" href="https://coconala.com/users/（ID）">ココナラで相談する</a> に置き換えてください -->
+          <span class="btn btn--pending">ココナラ（URL要入力）</span>
+          <!-- /EDIT -->
+          <!-- EDIT: UpworkのプロフィールURL。決まったら下の span を <a class="btn" href="https://www.upwork.com/freelancers/（ID）" lang="en">Upwork</a> に置き換えてください -->
+          <span class="btn btn--pending" lang="en">Upwork (URL TBD)</span>
+          <!-- /EDIT -->
+        </div>
+        <p class="caution">クラウドソーシングでは、契約前に直接の連絡先をやり取りすることが禁止されています。そのため、このサイトにはメールアドレス・電話番号・住所を掲載していません。</p>
+        <h3>ご相談の際にあるとスムーズなもの</h3>
+        <ul class="check-list mb-0">
+          <li>今の作業の流れ（簡単なメモで構いません）</li>
+          <li>対象のファイルのサンプル（個人情報は伏せた状態で構いません）</li>
+          <li>1か月あたりの件数の目安</li>
+          <li>出力したい形式（Excel・CSV・会計ソフトの取込など）や通知先</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        function addSubcategory(parentCategory) {
-            const subcategory = prompt('Enter subcategory name:');
-            if (subcategory && !expData[parentCategory].subcategories[subcategory]) {
-                expData[parentCategory].subcategories[subcategory] = { exp: 0, level: 1 };
-                const subcategoryContainer = document.getElementById(`${parentCategory}-subcategories`);
-                const subcategoryDiv = document.createElement('div');
-                subcategoryDiv.className = 'subcategory';
-                subcategoryDiv.innerHTML = `
-                    <h4>${subcategory}</h4>
-                    <div class="exp-bar">
-                        <div class="exp-fill" id="${parentCategory}-${subcategory}-exp">0%</div>
-                    </div>
-                    <div class="level" id="${parentCategory}-${subcategory}-level">Level: 1</div>
-                    <button onclick="gainExp('${subcategory}', true, '${parentCategory}')">Gain ${subcategory} Exp</button>
-                    <button onclick="removeSubcategory('${subcategory}', '${parentCategory}')">Remove ${subcategory}</button>
-                `;
-                subcategoryContainer.appendChild(subcategoryDiv);
-            }
-        }
+</main>
 
-        function removeCategory(category) {
-            delete expData[category];
-            const categoryDiv = document.getElementById(category + '-exp').parentElement.parentElement;
-            categoryDiv.remove();
-        }
-
-        function removeSubcategory(subcategory, parentCategory) {
-            delete expData[parentCategory].subcategories[subcategory];
-            const subcategoryDiv = document.getElementById(`${parentCategory}-${subcategory}-exp`).parentElement.parentElement;
-            subcategoryDiv.remove();
-            updateParentCategoryExp(parentCategory);
-        }
-    </script>
+<footer class="site-footer">
+  <div class="container">
+    <nav aria-label="フッターメニュー">
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/works/chohyo/">帳票データ取り出しツール</a></li>
+        <li><a href="/works/ai-inbox/">AI 受付アシスタント</a></li>
+        <li><a href="/works/web-monitor/">Web監視・入力自動化</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+    <p class="disclaimer">掲載している会社名・商品名・数値はすべて架空のデモデータです。</p>
+    <p>本サイトは外部の解析ツール・広告を使用していません。</p>
+    <!-- EDIT: 表示名 -->
+    <p>© 2026 <span class="todo">要入力</span></p>
+    <!-- /EDIT -->
+  </div>
+</footer>
 </body>
-
 </html>
