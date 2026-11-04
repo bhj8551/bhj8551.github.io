@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>帳票データ取り出しツール｜PDF・Excelの請求書・納品書をCSVと確認用Excelに</title>
+<meta name="description" content="PDFの請求書・注文一覧・納品書や形式の違うExcel・CSVから必要な項目を取り出し、1件1行のCSVと確認用Excelにまとめるツールです。検算と「要確認」の表示で、確認が必要な行だけを見直せます。">
+<link rel="canonical" href="https://bhj8551.github.io/works/chohyo/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="業務自動化ツール開発">
+<meta property="og:title" content="帳票データ取り出しツール｜PDF・Excelの帳票をCSVと確認用Excelに">
+<meta property="og:description" content="請求書・納品書・注文一覧のPDFや形式の違うExcel・CSVを、1件1行のCSVと確認用Excelに。検算と「要確認」で見直しを最小限に。">
+<meta property="og:url" content="https://bhj8551.github.io/works/chohyo/">
+<meta property="og:image" content="https://bhj8551.github.io/assets/img/og/og-chohyo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="帳票データ取り出しツール：PDF・Excel・CSVから1件1行のCSVと確認用Excelへ">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f4e79">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" alt="" width="32" height="32">
+      <span>業務自動化ツール開発<small>PDF・Excel・メール・Webの手作業を減らす</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="/#services">サービス</a></li>
+        <li><a href="/#strengths">強み</a></li>
+        <li><a href="/#process">進め方</a></li>
+        <li><a href="/#faq">よくある質問</a></li>
+        <li><a href="/#profile">プロフィール</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero" aria-labelledby="page-title">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="/">トップ</a></li>
+          <li><a href="/#services">サービス</a></li>
+          <li aria-current="page">帳票データ取り出しツール</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">PDF・Excel・CSV の帳票</span>
+      <h1 id="page-title">帳票データ取り出しツール</h1>
+      <p class="lead">PDFの請求書・注文一覧・納品書や、取引先ごとに形式の違うExcel・CSVから必要な項目を取り出し、<strong>1件＝1行のCSV</strong>と<strong>確認用のExcel</strong>にまとめます。「ファイルを選んで、変換ボタンを押すだけ」で使え、読み取り結果は検算と「要確認」の印で確認しやすくしています。</p>
+      <ul class="hero-tags" aria-label="技術・環境">
+        <li><span class="chip">Python</span></li>
+        <li><span class="chip">Windows 10 / 11・Mac</span></li>
+        <li><span class="chip">インターネット接続不要</span></li>
+        <li><span class="chip">データを外部に送信しません</span></li>
+      </ul>
+      <nav class="toc" aria-label="このページの目次">
+        <ul>
+          <li><a href="#worries">こんなお悩み</a></li>
+          <li><a href="#features">できること</a></li>
+          <li><a href="#flow">処理の流れ</a></li>
+          <li><a href="#demo">デモ</a></li>
+          <li><a href="#accuracy">精度・処理時間</a></li>
+          <li><a href="#delivery">納品物と導入の流れ</a></li>
+          <li><a href="#limits">対応しないこと・注意点</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== こんなお悩み ===== -->
+    <section class="content-section" id="worries" aria-labelledby="worries-title">
+      <h2 id="worries-title">こんなお悩みに</h2>
+      <ul class="worry-list">
+        <li>取引先から届くPDFの請求書・納品書を、毎月Excelに手で打ち直している</li>
+        <li>PDFの文字をコピーすると列の順番がずれて、結局手作業で直している</li>
+        <li>拠点・取引先ごとにExcelの形式（列名・並び順・見出しの位置）がバラバラで、集計の前に整形が必要</li>
+        <li>和暦と西暦、全角と半角、「㈱」と「株式会社」が混ざっていて、集計がうまく合わない</li>
+        <li>自動化しても、読み取りが正しいかどうかを全部見直すなら意味がない</li>
+      </ul>
+    </section>
+
+    <!-- ===== できること ===== -->
+    <section class="content-section" id="features" aria-labelledby="features-title">
+      <h2 id="features-title">できること</h2>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">機能</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">PDF帳票の読み取り</th><td>文字の<strong>位置（座標）</strong>をもとに表の列を判定するため、列の順番が崩れません。1ページに複数の明細が並ぶ横長の一覧表、セル内の改行、2ページにまたがる明細（2ページ目以降に見出しがない帳票を含む）、見出しが2行に折り返している表にも対応します。</td></tr>
+            <tr><th scope="row">帳票の種類の自動判別</th><td>「請求書」「注文一覧」「納品書」「納品書兼請求書」などをキーワードで判別します。新しい形式の帳票は、設定ファイル（YAML形式のテンプレート）を追加して対応します。</td></tr>
+            <tr><th scope="row">Excel・CSVの取りまとめ</th><td>.xlsx / .xlsm / .xls / CSV（UTF-8・Shift_JIS を自動判別）に対応。「品名」「商品名」「品目」のような列名の違い、見出し行の位置、結合セル、合計行を吸収して1つの表にまとめます。</td></tr>
+            <tr><th scope="row">表記の統一</th><td>全角/半角、和暦→西暦（令和・平成・昭和、元年、「R6.4.1」など）、金額（¥・円・カンマ・末尾の「-」・△▲のマイナス）、税率（10%・8%軽減）、会社名（株式会社/(株)/㈱）、電話番号・郵便番号、インボイス登録番号（T＋13桁の形式チェック）。<strong>元の値は「原文_」列に残します。</strong></td></tr>
+            <tr><th scope="row">検算と「要確認」</th><td>小計＋消費税＝合計、明細の合計と総額、数量×単価＝金額、税率別の内訳、必須項目の空欄、重複、文字化けをチェックし、行ごとに<span class="badge-check">要確認</span>と理由を表示します。</td></tr>
+            <tr><th scope="row">出力</th><td>CSV（BOM付きUTF-8 または Shift_JIS）と確認用Excel。確認用Excelは、要確認のセルが黄色になり、元ファイル名・ページ番号で元の帳票をたどれます。「要確認一覧」から該当行へ移動でき、取引先別・月別・取引先×月の集計シートも作ります。</td></tr>
+            <tr><th scope="row">操作</th><td>画面で「ファイルを選ぶ → 変換する」。終わると結果のフォルダが開きます。処理の記録（処理ログ）も保存します。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>読み取り結果の例（架空のサンプル帳票で実際に出力された値）</h3>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">元の帳票での表記（原文）</th><th scope="col">出力（表記をそろえた後）</th></tr></thead>
+          <tbody>
+            <tr><td data-label="原文">請求日「令和7年1月29日」</td><td data-label="出力"><code>2025-01-29</code></td></tr>
+            <tr><td data-label="原文">請求先「みずなら産業(株)」</td><td data-label="出力"><code>みずなら産業株式会社</code></td></tr>
+            <tr><td data-label="原文">ご請求金額「¥53,323-」</td><td data-label="出力"><code>53323</code></td></tr>
+            <tr><td data-label="原文">電話番号「０６−０９８７−６５４３」</td><td data-label="出力"><code>06-0987-6543</code></td></tr>
+            <tr><td data-label="原文">注文一覧の金額「▲¥14,400」（返品）</td><td data-label="出力"><code>-14400</code></td></tr>
+            <tr><td data-label="原文">明細の税率「8%※」</td><td data-label="出力"><code>8%(軽減)</code></td></tr>
+            <tr><td data-label="原文">Excel（.xls）の売上日「R6.4.9」</td><td data-label="出力"><code>2024-04-09</code></td></tr>
+            <tr><td data-label="原文">CSVの得意先「株式会社　つきくさ商会」（全角スペース）</td><td data-label="出力"><code>株式会社つきくさ商会</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>「要確認」の理由の例（確認用Excelの「確認理由」列）</h3>
+      <ul>
+        <li>小計＋消費税（38,578）と合計（38,588）が一致しません</li>
+        <li>明細1行目: 数量×単価（125）と金額（150）が一致しません</li>
+        <li>重複の可能性があります（請求書番号・請求元が同じ: invoice_08.pdf 1ページ）</li>
+        <li>登録番号: 登録番号の形式（T＋13桁）ではありません: T839395003836</li>
+        <li>請求元: 文字化けの可能性があります（PDFの文字コードを読み取れない文字が含まれています）</li>
+      </ul>
+      <p class="muted small">会社名・番号はすべて架空です。</p>
+    </section>
+
+    <!-- ===== 処理の流れ ===== -->
+    <section class="content-section" id="flow" aria-labelledby="flow-title">
+      <h2 id="flow-title">処理の流れ</h2>
+      <ol class="flow" aria-label="処理の流れ">
+        <li><div class="flow-box"><strong>ファイルを選ぶ</strong><span>PDF・Excel・CSV をまとめて追加（フォルダごとでも可）</span></div></li>
+        <li><div class="flow-box"><strong>帳票の種類を自動判別</strong><span>請求書・注文一覧・納品書・納品書兼請求書など</span></div></li>
+        <li><div class="flow-box"><strong>項目と明細を取り出す</strong><span>PDFは文字の位置から表の列を判定。Excel・CSVは列名の違いを吸収</span></div></li>
+        <li><div class="flow-box"><strong>表記をそろえる</strong><span>和暦→西暦、全角→半角、「㈱」→「株式会社」など。元の値は「原文_」列に保存</span></div></li>
+        <li><div class="flow-box flow-box--branch"><strong>検算・重複・空欄のチェック</strong><span>問題のある行に「要確認」と理由を付ける</span></div></li>
+        <li><div class="flow-box"><strong>CSV と確認用Excelを出力</strong><span>結果のフォルダが自動で開きます</span></div></li>
+        <li><div class="flow-box flow-box--human"><strong>担当者が確認</strong><span>黄色のセル（要確認）だけを元の帳票と見比べて修正</span></div></li>
+      </ol>
+      <h3>使い方は3ステップ</h3>
+      <ol class="steps steps--4" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <li><h4>ファイルを追加</h4><p>「ファイルを追加…」「フォルダを追加…」で PDF・Excel・CSV を選びます（何件でも可）。</p></li>
+        <li><h4>設定を確認</h4><p>CSV の文字コード（通常は UTF-8、古い会計ソフト向けは Shift_JIS）と保存先を選びます。</p></li>
+        <li><h4>「変換する」を押す</h4><p>終わると結果のフォルダが開きます。確認用Excelの黄色のセルを確認します。</p></li>
+      </ol>
+    </section>
+
+    <!-- ===== デモ ===== -->
+    <section class="content-section" id="demo" aria-labelledby="demo-title">
+      <h2 id="demo-title">デモ（画面と出力）</h2>
+      <p class="honest">以下の画面は、<strong>架空のサンプル帳票</strong>でツールを実際に動かしたものです。会社名・人名・番号はすべて架空で、実在の企業とは関係ありません。</p>
+
+      <div class="figure-row">
+        <figure>
+          <a class="zoom" href="/assets/img/chohyo/gui_files.webp"><img src="/assets/img/chohyo/gui_files.webp" width="760" height="600" loading="lazy" alt="操作画面。上から「1. 変換するファイル」に PDF 4件と Excel・CSV 6件の一覧、「2. 設定」に帳票の種類（自動判別）・CSV の文字コード・保存先フォルダ、「3. 変換」に「変換する」ボタンが並んでいる"></a>
+          <figcaption>操作画面：ファイルを選んで「変換する」を押すだけです（Linux 上で撮影。Windows・Mac では見た目が多少異なります）。</figcaption>
+        </figure>
+        <figure>
+          <a class="zoom" href="/assets/img/chohyo/gui_done.webp"><img src="/assets/img/chohyo/gui_done.webp" width="760" height="600" loading="lazy" alt="変換が終わった操作画面。下部に「完了: 144件（要確認 8件）」と結果フォルダの場所が表示されている"></a>
+          <figcaption>変換の完了：10ファイルから144件を出力し、そのうち8件が「要確認」になった例です。</figcaption>
+        </figure>
+      </div>
+
+      <figure>
+        <a class="zoom" href="/assets/img/chohyo/review_invoice.webp"><img src="/assets/img/chohyo/review_invoice.webp" width="1590" height="298" loading="lazy" alt="確認用Excelの「請求書」シート。左端の「要確認」列と「確認理由」列があり、合計が一致しない行や重複の可能性がある行の該当セルが黄色になっている"></a>
+        <figcaption>確認用Excel「請求書」シート：要確認の値は黄色のセルになり、「確認理由」列に理由が表示されます。</figcaption>
+      </figure>
+      <figure>
+        <a class="zoom" href="/assets/img/chohyo/review_list.webp"><img src="/assets/img/chohyo/review_list.webp" width="1392" height="380" loading="lazy" alt="確認用Excelの「要確認一覧」シート。データの種類・元ファイル・場所（ページ・行）・内容・確認理由・「開く」リンクが並んでいる"></a>
+        <figcaption>「要確認一覧」シート：確認が必要な行だけが並び、「開く」で該当の行へ移動できます。</figcaption>
+      </figure>
+      <figure>
+        <a class="zoom" href="/assets/img/chohyo/review_by_party.webp"><img src="/assets/img/chohyo/review_by_party.webp" width="1040" height="426" loading="lazy" alt="確認用Excelの「取引先別集計」シート。取引先ごとの件数・金額合計・うち要確認の件数が並んでいる"></a>
+        <figcaption>「取引先別集計」シート：取引先ごとの件数・金額の合計と、そのうち要確認の件数が分かります。</figcaption>
+      </figure>
+      <p class="muted small">Excel の画面は Linux 上の LibreOffice Calc（表計算ソフト）で表示し、日本語フォントで撮影したものです。Microsoft Excel では見た目が多少異なります。画像を押すと、元の大きさで表示します。</p>
+
+      <h3>出力されるファイル</h3>
+<pre><code>変換結果_20250401_093000/
+├── 請求書.csv           … 請求書1枚＝1行（請求書番号・請求日・請求先・金額…）
+├── 請求書_明細.csv      … 明細1行＝1行（どの請求書の何行目かが分かる）
+├── 注文一覧.csv         … 一覧表の1行＝1行
+├── 納品書.csv / 納品書_明細.csv
+├── 売上取りまとめ.csv   … Excel・CSVを1つにまとめた表
+├── 確認用.xlsx          … 概要・要確認一覧・各データ・取引先別/月別/取引先×月の集計
+└── 処理ログ.txt         … 何を読み、何を除外したかの記録</code></pre>
+    </section>
+
+    <!-- ===== 精度・処理時間 ===== -->
+    <section class="content-section" id="accuracy" aria-labelledby="accuracy-title">
+      <h2 id="accuracy-title">精度・処理時間（実測）</h2>
+      <p>架空のサンプル帳票（請求書・注文一覧・納品書・納品書兼請求書と、形式の違うExcel・CSV）を使い、正解データと突き合わせて実際に計測した結果です。</p>
+      <p class="honest"><strong>架空のサンプル帳票での計測。お客様の帳票での精度は、事前の無料サンプルチェックで確認します。</strong><br>評価用の帳票はテンプレートの想定内で作ったもののため、正解率が100%に近くなっています。実際の帳票で同じ精度を保証するものではありません。</p>
+
+      <h3>第1ラウンド：開発用（dev）とホールドアウト（holdout）</h3>
+      <ul class="small">
+        <li><strong>開発用（dev）</strong>：開発中に精度を確認・調整したセット</li>
+        <li><strong>ホールドアウト（holdout）</strong>：列幅・位置・文字の大きさ・行の高さ・一部の列順を変えたセット。開発中は結果を見ずに、最後に1回だけ評価しました</li>
+      </ul>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <caption>第1ラウンドの結果（計測日：2026年10月27日）</caption>
+          <thead>
+            <tr><th scope="col">セット</th><th scope="col">帳票</th><th scope="col" class="num">ファイル数</th><th scope="col" class="num">項目単位の正解率</th><th scope="col" class="num">仕込んだ異常の検知</th><th scope="col" class="num">誤りなのに要確認なし</th><th scope="col" class="num">処理時間/ファイル</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="セット">開発用（dev）</td><th scope="row" data-label="帳票">Excel/CSV取りまとめ</th><td class="num" data-label="ファイル数">6</td><td class="num" data-label="項目単位の正解率">100.0%（840/840）</td><td class="num" data-label="仕込んだ異常の検知">5/5</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">20 ms</td></tr>
+            <tr><td data-label="セット">開発用（dev）</td><th scope="row" data-label="帳票">納品書</th><td class="num" data-label="ファイル数">12</td><td class="num" data-label="項目単位の正解率">100.0%（791/791）</td><td class="num" data-label="仕込んだ異常の検知">4/4</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">30 ms</td></tr>
+            <tr><td data-label="セット">開発用（dev）</td><th scope="row" data-label="帳票">請求書</th><td class="num" data-label="ファイル数">13</td><td class="num" data-label="項目単位の正解率">99.9%（956/957）</td><td class="num" data-label="仕込んだ異常の検知">7/7</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">33 ms</td></tr>
+            <tr><td data-label="セット">開発用（dev）</td><th scope="row" data-label="帳票">注文一覧</th><td class="num" data-label="ファイル数">11</td><td class="num" data-label="項目単位の正解率">100.0%（4081/4081）</td><td class="num" data-label="仕込んだ異常の検知">7/7</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">123 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout）</td><th scope="row" data-label="帳票">Excel/CSV取りまとめ</th><td class="num" data-label="ファイル数">5</td><td class="num" data-label="項目単位の正解率">100.0%（696/696）</td><td class="num" data-label="仕込んだ異常の検知">5/5</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">5 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout）</td><th scope="row" data-label="帳票">納品書</th><td class="num" data-label="ファイル数">10</td><td class="num" data-label="項目単位の正解率">100.0%（707/707）</td><td class="num" data-label="仕込んだ異常の検知">4/4</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">28 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout）</td><th scope="row" data-label="帳票">請求書</th><td class="num" data-label="ファイル数">11</td><td class="num" data-label="項目単位の正解率">100.0%（783/783）</td><td class="num" data-label="仕込んだ異常の検知">5/5</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">48 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout）</td><th scope="row" data-label="帳票">注文一覧</th><td class="num" data-label="ファイル数">10</td><td class="num" data-label="項目単位の正解率">100.0%（3694/3694）</td><td class="num" data-label="仕込んだ異常の検知">6/6</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">127 ms</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="measure-note">架空のサンプル帳票での計測。お客様の帳票での精度は、事前の無料サンプルチェックで確認します。</p>
+      <p class="small">開発用の請求書で1項目だけ誤っているのは、PDFのフォントに文字の対応表がない「﨑」が <code>(cid:8443)</code> と読み取られる、わざと入れたケースです。この行は「文字化けの可能性」として要確認になっています（自動で正しい文字には戻せません）。</p>
+
+      <h3>第2ラウンド：開発用（dev2）とホールドアウト（holdout2）</h3>
+      <p class="small">対象は、改ページ後に表の見出しがない帳票・見出しが2行に折り返している表・「納品書兼請求書」の3点です（Excel・CSV は対象外）。</p>
+      <ul class="small">
+        <li><strong>開発用（dev2）</strong>：第2ラウンドの開発中に精度を確認・調整したセット</li>
+        <li><strong>ホールドアウト（holdout2）</strong>：第1ラウンドとは別の乱数と別のレイアウト変化で作ったセット。エンジンを変更する前に作成して保存し、開発中は結果を見ずに、変更の完了後に1回だけ評価しました</li>
+      </ul>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <caption>第2ラウンドの結果（計測日：2026年11月4日）</caption>
+          <thead>
+            <tr><th scope="col">セット</th><th scope="col">帳票</th><th scope="col" class="num">ファイル数</th><th scope="col" class="num">項目単位の正解率</th><th scope="col" class="num">仕込んだ異常の検知</th><th scope="col" class="num">誤りなのに要確認なし</th><th scope="col" class="num">処理時間/ファイル</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="セット">開発用（dev2）</td><th scope="row" data-label="帳票">納品書</th><td class="num" data-label="ファイル数">4</td><td class="num" data-label="項目単位の正解率">100.0%（658/658）</td><td class="num" data-label="仕込んだ異常の検知">1/1</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">58 ms</td></tr>
+            <tr><td data-label="セット">開発用（dev2）</td><th scope="row" data-label="帳票">納品書兼請求書</th><td class="num" data-label="ファイル数">7</td><td class="num" data-label="項目単位の正解率">100.0%（609/609）</td><td class="num" data-label="仕込んだ異常の検知">4/4</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">47 ms</td></tr>
+            <tr><td data-label="セット">開発用（dev2）</td><th scope="row" data-label="帳票">請求書</th><td class="num" data-label="ファイル数">5</td><td class="num" data-label="項目単位の正解率">100.0%（609/609）</td><td class="num" data-label="仕込んだ異常の検知">1/1</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">60 ms</td></tr>
+            <tr><td data-label="セット">開発用（dev2）</td><th scope="row" data-label="帳票">注文一覧</th><td class="num" data-label="ファイル数">5</td><td class="num" data-label="項目単位の正解率">100.0%（2144/2144）</td><td class="num" data-label="仕込んだ異常の検知">3/3</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">164 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout2）</td><th scope="row" data-label="帳票">納品書</th><td class="num" data-label="ファイル数">6</td><td class="num" data-label="項目単位の正解率">100.0%（609/609）</td><td class="num" data-label="仕込んだ異常の検知">3/3</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">48 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout2）</td><th scope="row" data-label="帳票">納品書兼請求書</th><td class="num" data-label="ファイル数">7</td><td class="num" data-label="項目単位の正解率">100.0%（595/595）</td><td class="num" data-label="仕込んだ異常の検知">4/4</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">48 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout2）</td><th scope="row" data-label="帳票">請求書</th><td class="num" data-label="ファイル数">6</td><td class="num" data-label="項目単位の正解率">100.0%（624/624）</td><td class="num" data-label="仕込んだ異常の検知">2/2</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">49 ms</td></tr>
+            <tr><td data-label="セット">ホールドアウト（holdout2）</td><th scope="row" data-label="帳票">注文一覧</th><td class="num" data-label="ファイル数">6</td><td class="num" data-label="項目単位の正解率">100.0%（2575/2575）</td><td class="num" data-label="仕込んだ異常の検知">4/4</td><td class="num" data-label="誤りなのに要確認なし">0件</td><td class="num" data-label="処理時間/ファイル">161 ms</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="measure-note">架空のサンプル帳票での計測。お客様の帳票での精度は、事前の無料サンプルチェックで確認します。</p>
+
+      <h3>数字の見方</h3>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">指標</th><th scope="col">意味</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">項目単位の正解率</th><td>正解データの各項目（請求書番号・日付・金額・明細の各列など）について、表記をそろえた後の値が完全に一致した割合です。</td></tr>
+            <tr><th scope="row">仕込んだ異常の検知</th><td>合計の不一致・明細の計算違い・必須項目の空欄・重複・登録番号の形式誤り・文字化けなど、サンプル側にわざと入れた問題のうち「要確認」になった件数です。</td></tr>
+            <tr><th scope="row">誤りなのに要確認なし</th><td>読み取りを誤ったのに「要確認」にならなかった件数です。<strong>最も注意が必要な数字</strong>として記録しています。</td></tr>
+            <tr><th scope="row">処理時間/ファイル</th><td>1ファイルの読み込み〜取り出し〜表記の統一にかかった時間の平均です（検算・出力は含みません）。評価に使ったパソコン（Linux、Intel Xeon 2.10GHz・4コア）での値で、パソコンの性能やページ数によって変わります。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="caution">
+        <p><strong>分かっている限界</strong></p>
+        <ul class="mb-0">
+          <li>評価データは、すべて開発者が同じ生成スクリプトで作った架空の帳票です。見出しの文言が大きく違う帳票や、手書き・スキャン画像には対応しません。</li>
+          <li>開発中に弱点を探すため、さらに極端なレイアウト（文字・行の高さ・列幅を大きく変えたもの）で試したところ、セル内で折り返した品名の空白が失われ、要確認にならない例がありました（例：「ラベルシール No12」→「ラベルシールNo12」）。品名の文字のため、検算では検知できません。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 納品物と導入の流れ ===== -->
+    <section class="content-section" id="delivery" aria-labelledby="delivery-title">
+      <h2 id="delivery-title">納品物と導入の流れ</h2>
+      <div class="grid grid--2">
+        <div class="card">
+          <h3>納品物</h3>
+          <ul class="check-list mb-0">
+            <li>Windows / Mac 用のツール（ダウンロードして展開し、ダブルクリックで起動）</li>
+            <li>お客様の帳票に合わせたテンプレート（読み取り位置の設定ファイル）</li>
+            <li>操作マニュアル（準備・起動時の警告への対処・結果の見方・要確認の対処・よくある質問）</li>
+            <li>導入前の精度チェックのレポート</li>
+            <li>（ご希望の場合）会計ソフト取込用 CSV の形式設定</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>動作環境</h3>
+          <dl class="dl-grid">
+            <div><dt>Windows</dt><dd>Windows 10 / 11（64ビット）</dd></div>
+            <div><dt>Mac</dt><dd>Apple シリコン（M1以降）搭載のMac。Intel 搭載のMacは別のファイルをお渡しします</dd></div>
+            <div><dt>読み取れるファイル</dt><dd>PDF（文字情報のあるもの）、Excel（.xlsx / .xlsm / .xls）、CSV</dd></div>
+            <div><dt>インターネット</dt><dd>不要です</dd></div>
+          </dl>
+        </div>
+      </div>
+      <h3>導入の流れ</h3>
+      <ol class="steps steps--5">
+        <li><h4>サンプルで無料精度チェック</h4><p>実際の帳票を数件お送りいただき（個人情報は伏せた状態で可）、読み取り結果と精度をレポートします。</p></li>
+        <li><h4>お見積り</h4><p>帳票の種類・件数・必要な出力形式（会計ソフト取込など）をもとにお見積りします。</p></li>
+        <li><h4>開発・調整</h4><p>お客様の帳票に合わせてテンプレートを作り、精度を確認します。途中経過をご報告します。</p></li>
+        <li><h4>納品・操作説明</h4><p>すぐ使える形でお渡しし、操作マニュアルとあわせて使い方をご説明します。</p></li>
+        <li><h4>納品後2週間の不具合対応</h4><p>読み取りの不具合や操作上の問題に対応します。</p></li>
+      </ol>
+      <p class="note" style="margin-top:20px">このツールは個別納品用のため、Microsoft・Apple の署名がない状態では、初回起動時に警告が表示されます。起動のしかたは操作マニュアルで説明しています。警告なしで配布したい場合（署名・公証）は、費用と手続きが必要なため、ご希望に応じてお見積りに含めます。</p>
+    </section>
+
+    <!-- ===== 対応しないこと・注意点 ===== -->
+    <section class="content-section" id="limits" aria-labelledby="limits-title">
+      <h2 id="limits-title">対応しないこと・注意点</h2>
+      <ul class="ng-list">
+        <li><strong>スキャンしたPDF（画像）や手書きの帳票</strong>は読み取れません（エラーとして表示し、ほかのファイルの処理は続けます）。OCR（画像から文字を読み取る機能）との連携はオプションで、標準では使いません。</li>
+        <li><strong>パスワード付きのPDF・Excel</strong>は読み取れません。</li>
+        <li>初めて見るレイアウトの帳票は、テンプレートの追加・調整が必要です。見出しの文言が大きく違う帳票は、自動では読めません。</li>
+        <li>2ページ目以降に表の見出しがない帳票は、前のページの列の位置を引き継いで読み取ります。ページごとに列の位置が変わる帳票は読み取れない場合があります（その場合は検算で要確認になります）。</li>
+        <li>セル内で折り返した位置にあった空白は失われることがあります（例：「ラベルシール No12」→「ラベルシールNo12」）。</li>
+        <li>Excel の数式セルは、Excel で保存したときの計算結果を読み取ります。</li>
+        <li>会計ソフト（freee・マネーフォワード・弥生）への取込用 CSV は、<strong>形式の枠組みのみ</strong>用意しています。各社の最新の取込仕様に合わせて設定してから使います。</li>
+        <li>インボイス登録番号は<strong>形式（T＋13桁）のチェックのみ</strong>です。国税庁サイトでの実在確認は行いません。</li>
+      </ul>
+      <p class="note">処理はすべてお使いのパソコンの中で行い、<strong>データを外部に送信しません</strong>。</p>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="content-section" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">よくある質問</h2>
+      <div class="faq">
+        <details>
+          <summary>スキャンしたPDFは読み取れますか？</summary>
+          <div class="answer"><p>標準では読み取れません。システムから出力したPDF（文字を選択・コピーできるPDF）が対象です。スキャンPDFへの対応（OCR）は、オプションとしてご相談ください。</p></div>
+        </details>
+        <details>
+          <summary>取引先が増えて、帳票の形式が変わったら？</summary>
+          <div class="answer"><p>帳票の種類ごとに「テンプレート」という設定ファイルで読み取り位置を決めているため、新しい形式は設定ファイルの追加で対応できます。サンプルをお送りください。</p></div>
+        </details>
+        <details>
+          <summary>会計ソフトにそのまま取り込めますか？</summary>
+          <div class="answer"><p>freee・マネーフォワード・弥生会計向けの取込形式の枠組みを用意しています。各社の取込仕様に合わせた設定が必要なため、導入時に設定します。設定が済んでいない形式は、誤った CSV を作らないよう、変換を始める前にエラーになります。</p></div>
+        </details>
+        <details>
+          <summary>CSV を Excel で開くと文字化けします。</summary>
+          <div class="answer"><p>「CSV の文字コード」を「UTF-8（BOM付き）」にして変換し直してください。Shift_JIS の CSV は、古いシステムに取り込むとき用です。</p></div>
+        </details>
+        <details>
+          <summary>何件まで一度に処理できますか？</summary>
+          <div class="answer"><p>件数の上限はありません。目安として1ファイルあたり数十ミリ秒〜0.2秒程度です（評価環境での値。パソコンの性能やページ数によって変わります）。</p></div>
+        </details>
+        <details>
+          <summary>確認用Excelで値を直したら、CSV にも反映されますか？</summary>
+          <div class="answer"><p>反映されません。CSV を使う場合は、CSV 側も直してください。</p></div>
+        </details>
+        <details>
+          <summary>データが外部に送られることはありますか？</summary>
+          <div class="answer"><p>ありません。すべてお使いのパソコンの中で処理します（インターネット接続も不要です）。</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== お問い合わせ ===== -->
+    <section class="content-section" id="contact" aria-labelledby="contact-title">
+      <div class="cta-band">
+        <h2 id="contact-title">お問い合わせ</h2>
+        <p>まずは帳票のサンプル（個人情報は伏せた状態で可）で、無料の精度チェックをお試しください。ご相談は、各プラットフォームのメッセージ機能からお願いします。</p>
+        <p class="mb-0"><a class="btn" href="/#contact">お問い合わせ方法を見る</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav aria-label="フッターメニュー">
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/works/chohyo/" aria-current="page">帳票データ取り出しツール</a></li>
+        <li><a href="/works/ai-inbox/">AI 受付アシスタント</a></li>
+        <li><a href="/works/web-monitor/">Web監視・入力自動化</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+    <p class="disclaimer">掲載している会社名・商品名・数値はすべて架空のデモデータです。</p>
+    <p>本サイトは外部の解析ツール・広告を使用していません。</p>
+    <!-- EDIT: 表示名 -->
+    <p>© 2026 <span class="todo">要入力</span></p>
+    <!-- /EDIT -->
+  </div>
+</footer>
+</body>
+</html>

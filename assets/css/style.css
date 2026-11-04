@@ -270,7 +270,7 @@ main { display: block; }
   border-radius: 50%; background: var(--primary); color: var(--bg); font-weight: 700;
   display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
 }
-.steps > li h3 { font-size: 1.02rem; margin-bottom: 0.25em; }
+.steps > li h3, .steps > li h4 { font-size: 1.02rem; margin-bottom: 0.25em; }
 .steps > li p { margin: 0; color: var(--muted); font-size: 0.93rem; }
 @media (min-width: 900px) {
   .steps--6 { grid-template-columns: repeat(3, 1fr); }
@@ -306,6 +306,7 @@ thead th { background: var(--primary-soft); color: var(--text); font-weight: 700
 tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 caption { caption-side: top; text-align: left; padding: 12px 12px 0; font-weight: 700; }
+@media (min-width: 720px) { tbody th[scope="row"] { min-width: 9.5em; } }
 
 /* スマホでは表をカード状に積む（.table-stack） */
 @media (max-width: 719px) {
@@ -319,7 +320,7 @@ caption { caption-side: top; text-align: left; padding: 12px 12px 0; font-weight
     content: attr(data-label) "："; color: var(--muted); font-weight: 400; font-size: 0.86rem;
   }
   .table-stack tbody th { font-weight: 700; }
-  .table-stack caption { padding: 12px 12px 4px; }
+  .table-stack caption { display: block; width: auto; padding: 12px 12px 4px; }
 }
 
 /* ---------- notes ---------- */
@@ -373,6 +374,10 @@ figcaption { font-size: 0.86rem; color: var(--muted); margin-top: 8px; }
 .ng-list { list-style: none; padding: 0; }
 .ng-list li { position: relative; padding-left: 1.7em; }
 .ng-list li::before { content: "×"; position: absolute; left: 0.2em; color: var(--warn-border); font-weight: 700; }
+
+.content-section h3:not(:first-child), .content-section h4:not(:first-child) { margin-top: 1.8em; }
+.zoom { display: block; }
+.zoom:focus-visible img { outline: 3px solid var(--focus); outline-offset: 2px; }
 
 /* ---------- FAQ ---------- */
 .faq { display: grid; gap: 10px; }

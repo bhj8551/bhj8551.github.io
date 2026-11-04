@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 受付アシスタント｜Gmail・Googleフォームの問い合わせを生成AIで仕分け・通知・返信下書き</title>
+<meta name="description" content="Gmail・Google フォームの問い合わせを生成AIで分類し、担当者への通知・返信の下書き・記録・リマインドまで自動化する Google Apps Script のテンプレートです。個人情報は記号に置き換えてから AI に送り、送信は人が確認して行います。">
+<link rel="canonical" href="https://bhj8551.github.io/works/ai-inbox/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="業務自動化ツール開発">
+<meta property="og:title" content="AI 受付アシスタント｜問い合わせの仕分け・通知・返信下書きを自動化">
+<meta property="og:description" content="Gmail・Google フォーム＋生成AI。個人情報をマスキングしてから AI に送り、返信は下書きまで。最終確認は人が行います。">
+<meta property="og:url" content="https://bhj8551.github.io/works/ai-inbox/">
+<meta property="og:image" content="https://bhj8551.github.io/assets/img/og/og-ai-inbox.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI 受付アシスタント：Gmail・Google フォームの問い合わせを生成AIで仕分け・通知・返信下書き">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f4e79">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" alt="" width="32" height="32">
+      <span>業務自動化ツール開発<small>PDF・Excel・メール・Webの手作業を減らす</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="/#services">サービス</a></li>
+        <li><a href="/#strengths">強み</a></li>
+        <li><a href="/#process">進め方</a></li>
+        <li><a href="/#faq">よくある質問</a></li>
+        <li><a href="/#profile">プロフィール</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero" aria-labelledby="page-title">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="/">トップ</a></li>
+          <li><a href="/#services">サービス</a></li>
+          <li aria-current="page">AI 受付アシスタント</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">メール・フォームの問い合わせ</span>
+      <h1 id="page-title">AI 受付アシスタント</h1>
+      <p class="lead">Google スプレッドシート・Gmail・Google フォームと生成AIを組み合わせて、<strong>問い合わせの仕分け・通知・返信の下書き・記録・リマインド</strong>を自動化します。Google Apps Script（GAS：Google のサービス上で動くプログラム）で作っているため、サーバーや有料の自動化ツールは不要です。</p>
+      <ul class="hero-tags" aria-label="技術・環境">
+        <li><span class="chip">Google Apps Script</span></li>
+        <li><span class="chip">Gmail・Google フォーム</span></li>
+        <li><span class="chip">Claude・OpenAI・Gemini</span></li>
+        <li><span class="chip">自動送信は既定でオフ</span></li>
+      </ul>
+      <nav class="toc" aria-label="このページの目次">
+        <ul>
+          <li><a href="#worries">こんなお悩み</a></li>
+          <li><a href="#features">できること</a></li>
+          <li><a href="#flow">処理の流れ</a></li>
+          <li><a href="#demo">デモ</a></li>
+          <li><a href="#security">個人情報と安全対策</a></li>
+          <li><a href="#delivery">納品物と導入の流れ</a></li>
+          <li><a href="#limits">対応しないこと・注意点</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== こんなお悩み ===== -->
+    <section class="content-section" id="worries" aria-labelledby="worries-title">
+      <h2 id="worries-title">こんなお悩みに</h2>
+      <ul class="worry-list">
+        <li>問い合わせメールやフォームの回答を、毎朝ひとつずつ読んで担当者に振り分けている</li>
+        <li>クレームや障害の連絡に気づくのが遅れ、対応が後手に回ったことがある</li>
+        <li>「来週中に」「月末までに」といった期限を見落としがち。担当者ごとの対応状況も見えにくい</li>
+        <li>返信文を毎回ゼロから書いていて時間がかかる</li>
+        <li>日報・週報のための件数集計が手作業になっている</li>
+        <li>生成AIを使いたいが、個人情報をそのまま外部に送るのは避けたい。最終確認は人がしたい</li>
+      </ul>
+    </section>
+
+    <!-- ===== できること ===== -->
+    <section class="content-section" id="features" aria-labelledby="features-title">
+      <h2 id="features-title">できること</h2>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">機能</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">受付</th><td>Gmail を定期的に確認（既定は10分ごと。検索条件とラベルで対象を指定）。Google フォームの回答は送信時にすぐ処理します。</td></tr>
+            <tr><th scope="row">前処理</th><td>引用文・署名を取り除き、メールアドレス・電話番号・郵便番号・住所・カード番号・氏名などを <code>[メール1]</code> のような記号に置き換えてから AI に送ります（設定で切り替え可）。</td></tr>
+            <tr><th scope="row">AI 判定</th><td>分類・緊急度・要約・必要な対応・期限・タスク・返信案を受け取り、形式を検証します。失敗したら再試行し、それでもだめならキーワードのルールで分類します。</td></tr>
+            <tr><th scope="row">AI の切り替え</th><td>Claude / OpenAI / Gemini を設定で切り替えられます。既定は小型で低価格のモデルです（モデル名は設定シートで変更可）。</td></tr>
+            <tr><th scope="row">期限の確認</th><td>「来週中」などのあいまいな期限は日付に置き換えたうえで<span class="badge-check">要確認</span>と表示し、通知でも確認を促します。</td></tr>
+            <tr><th scope="row">通知</th><td>分類×緊急度のルールで、Slack / Chatwork / メール / LINE（Messaging API）/ Google Chat に通知します。担当者へのメンションにも対応します。</td></tr>
+            <tr><th scope="row">返信の下書き</th><td>Gmail に返信の<strong>下書きだけ</strong>を作ります（自動送信は既定でオフ）。</td></tr>
+            <tr><th scope="row">記録</th><td>「ログ」シートに受信日時・送信者・件名・分類・緊急度・要約・担当者・状態（未対応／対応中／完了）・対応期限・下書きへのリンクを記録します。タスクは「タスク」シートへ。</td></tr>
+            <tr><th scope="row">リマインド・レポート</th><td>期限超過・長時間未対応の案件を毎朝まとめて通知します。日報・週報・月報も自動で作ります（AI による3行の総評付き）。</td></tr>
+            <tr><th scope="row">安定運用</th><td>二重処理の防止、Apps Script の実行時間の制限を見越した分割処理と自動再開、1日の実行時間の上限の監視と管理者への通知、エラーの記録。</td></tr>
+            <tr><th scope="row">コストの把握</th><td>AI の呼び出し回数とトークン数（AI の利用量の単位）を月別に集計し、設定した単価から費用を推定します。</td></tr>
+            <tr><th scope="row">お試し</th><td>「サンプルで試す」で、<strong>API キー（AI を使うための鍵）なし</strong>で全体の流れを確認できます（通知・下書きは実際には送信・作成しません）。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== 処理の流れ ===== -->
+    <section class="content-section" id="flow" aria-labelledby="flow-title">
+      <h2 id="flow-title">処理の流れ <span class="label-image">イメージ</span></h2>
+      <p class="small muted">ツールの仕様をもとに作成した図です。</p>
+      <ol class="flow" aria-label="処理の流れ">
+        <li>
+          <div class="flow-split">
+            <div class="flow-box"><strong>Gmail の新着メール</strong><span>10分ごとに確認</span></div>
+            <div class="flow-box"><strong>Google フォームの送信</strong><span>送信時にすぐ処理</span></div>
+          </div>
+        </li>
+        <li><div class="flow-box"><strong>前処理</strong><span>引用・署名の除去／個人情報を記号に置き換え（マスキング）</span></div></li>
+        <li><div class="flow-box"><strong>AI 判定</strong><span>分類・緊急度・要約・期限・返信案</span></div></li>
+        <li><div class="flow-box flow-box--branch"><strong>AI がエラーのとき</strong><span>再試行しても失敗したら、キーワードのルールで判定（「判定方法：ルール」と表示）</span></div></li>
+        <li><div class="flow-box"><strong>担当者・通知先を決める</strong><span>分類×緊急度のルール</span></div></li>
+        <li><div class="flow-box"><strong>ログ・タスクシートに記録</strong><span>状態（未対応／対応中／完了）と対応期限も管理</span></div></li>
+        <li>
+          <div class="flow-split">
+            <div class="flow-box"><strong>Gmail に返信の下書き</strong><span>記号を元の値に戻して、Google の中で作成</span></div>
+            <div class="flow-box"><strong>担当者に通知</strong><span>Slack / Chatwork / メール / LINE / Google Chat</span></div>
+          </div>
+        </li>
+        <li><div class="flow-box flow-box--human"><strong>担当者が内容を確認して送信</strong><span>最終判断は人が行います</span></div></li>
+        <li><div class="flow-box"><strong>毎日：リマインドとレポート</strong><span>期限超過・未対応の案件、日報・週報・月報</span></div></li>
+      </ol>
+    </section>
+
+    <!-- ===== デモ ===== -->
+    <section class="content-section" id="demo" aria-labelledby="demo-title">
+      <h2 id="demo-title">デモ</h2>
+      <p class="honest">このツールの画面画像は準備中です。以下の「マスキングの例」はツールの処理を架空のサンプル問い合わせで実際に動かした結果、「通知文」「ログシート」はツールの仕様をもとに作成した<strong>イメージ</strong>です。人名・会社名・連絡先はすべて架空です。</p>
+
+      <h3>マスキングの例（架空のサンプルで実際に処理した結果）</h3>
+      <p>ツールに同梱している架空の問い合わせ（クレームの例）を、前処理とマスキングの処理に通した結果です。引用部分と署名は取り除かれ、電話番号・郵便番号・住所・差出人の名前が記号に置き換わっています。</p>
+      <div class="figure-row">
+        <figure>
+          <figcaption style="margin:0 0 6px"><strong>元の本文</strong></figcaption>
+<pre class="message-sample">株式会社サンプル商事
+ご担当者様
+
+お世話になっております。山本です。
+10月20日に注文した商品（注文番号 A-20261020-15）がまだ届いておりません。
+明日までに配送状況を教えてください。届かない場合は返金を希望します。
+
+連絡先：090-1234-5678
+お届け先：〒100-0001 東京都千代田区架空町1-2-3 サンプルマンション101
+
+━━━━━━━━━━━━━━━
+山本 花子
+TEL：090-1234-5678
+Mail：hanako.yamamoto@example.jp
+━━━━━━━━━━━━━━━
+
+2026年10月21日(火) 9:00 株式会社サンプル商事 &lt;support@example.com&gt;:
+&gt; ご注文ありがとうございます。発送まで今しばらくお待ちください。</pre>
+        </figure>
+        <figure>
+          <figcaption style="margin:0 0 6px"><strong>AI に送る本文（前処理・マスキング後）</strong></figcaption>
+<pre class="message-sample">株式会社サンプル商事
+ご担当者様
+
+お世話になっております。[氏名1]です。
+10月20日に注文した商品（注文番号 A-20261020-15）がまだ届いておりません。
+明日までに配送状況を教えてください。届かない場合は返金を希望します。
+
+連絡先：[電話1]
+お届け先：[郵便番号1] [住所1] サンプルマンション101</pre>
+        </figure>
+      </div>
+      <p class="caution small">建物名（「サンプルマンション101」）は検出されずに残っています。マスキングはパターンによる検出のため、<strong>すべての個人情報を確実に検出できるわけではありません</strong>。取引先名・契約番号など送りたくない語句は「追加マスキング語句」「追加マスキング正規表現（文字のパターン）」で指定できます。実際に AI に送られる本文は「サンプル結果」シートで確認できます。</p>
+
+      <h3>通知文の例 <span class="label-image">イメージ</span></h3>
+      <p>Slack・Chatwork・メール・LINE・Google Chat に、次のような本文で通知します（見積依頼をフォームで受け付けた場合の例）。</p>
+<pre class="message-sample">【問い合わせ】緊急度：中｜見積・購入相談
+件名：見積依頼
+送信者：中村 健一 &lt;ken.nakamura@example.com&gt;
+受信：2026-11-02 10:15（フォーム）
+担当：佐藤（営業）
+要約：業務用プリンター10台と保守契約の見積依頼。社内の稟議に使用。
+必要な対応：
+・見積書を作成して送付する
+期限：2026-11-13（推定・要確認 「来週中」）
+⚠ 期限があいまいです。お客様への確認または期限の確定をお願いします。
+返信下書き：Gmail に作成済み（送信前に内容を確認してください）
+受付ID：（問い合わせごとの番号）
+ログ：（スプレッドシートの該当行へのリンク）</pre>
+      <p class="small muted">通知に個人情報（送信者名など）を含めるかどうかは設定で選べます。件名などに含まれる <code>&lt;!channel&gt;</code> のようなメンション記法は、全員への通知にならないよう無害化します。</p>
+
+      <h3>「ログ」シートの列 <span class="label-image">イメージ</span></h3>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">列名</th><th scope="col">内容</th><th scope="col">例</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">受付ID</th><td data-label="内容">問い合わせごとの番号</td><td data-label="例">（自動で採番）</td></tr>
+            <tr><th scope="row">受信日時</th><td data-label="内容">メール・フォームを受け取った日時</td><td data-label="例">2026/11/02 10:15</td></tr>
+            <tr><th scope="row">種別</th><td data-label="内容">メール／フォーム</td><td data-label="例">フォーム</td></tr>
+            <tr><th scope="row">送信者</th><td data-label="内容">差出人</td><td data-label="例">中村 健一</td></tr>
+            <tr><th scope="row">件名</th><td data-label="内容">メールの件名</td><td data-label="例">見積依頼</td></tr>
+            <tr><th scope="row">分類</th><td data-label="内容">「分類」シートで定義した分類</td><td data-label="例">見積・購入相談</td></tr>
+            <tr><th scope="row">緊急度</th><td data-label="内容">高／中／低</td><td data-label="例">中</td></tr>
+            <tr><th scope="row">要約</th><td data-label="内容">AI による要約</td><td data-label="例">業務用プリンター10台と保守契約の見積依頼…</td></tr>
+            <tr><th scope="row">必要な対応</th><td data-label="内容">AI が挙げた対応</td><td data-label="例">見積書を作成して送付する</td></tr>
+            <tr><th scope="row">担当者</th><td data-label="内容">ルールで決まった担当者</td><td data-label="例">佐藤（営業）</td></tr>
+            <tr><th scope="row">状態</th><td data-label="内容">未対応／対応中／完了（選択式）</td><td data-label="例">未対応</td></tr>
+            <tr><th scope="row">対応期限</th><td data-label="内容">日付に置き換えた期限</td><td data-label="例">2026/11/13</td></tr>
+            <tr><th scope="row">期限の確度</th><td data-label="内容">明確／推定／なし など</td><td data-label="例">推定</td></tr>
+            <tr><th scope="row">期限確認</th><td data-label="内容">要確認／確認済（選択式）</td><td data-label="例"><span class="badge-check">要確認</span></td></tr>
+            <tr><th scope="row">返信下書き</th><td data-label="内容">Gmail の下書きへのリンク</td><td data-label="例">（リンク）</td></tr>
+            <tr><th scope="row">判定方法</th><td data-label="内容">AI／ルール（AI が使えなかった場合）</td><td data-label="例">AI</td></tr>
+            <tr><th scope="row">通知結果</th><td data-label="内容">通知先ごとの送信結果</td><td data-label="例">Slack（営業）：成功</td></tr>
+            <tr><th scope="row">メッセージID・スレッドID</th><td data-label="内容">Gmail の識別番号（二重処理の防止に使用）</td><td data-label="例">（自動）</td></tr>
+            <tr><th scope="row">処理日時</th><td data-label="内容">ツールが処理した日時</td><td data-label="例">2026/11/02 10:16</td></tr>
+            <tr><th scope="row">メモ</th><td data-label="内容">処理時の注記・担当者のメモ</td><td data-label="例">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">列は見出しの名前で探して書き込むため、列の並べ替えや独自の列の追加をしても動きます。</p>
+    </section>
+
+    <!-- ===== 個人情報と安全対策 ===== -->
+    <section class="content-section" id="security" aria-labelledby="security-title">
+      <h2 id="security-title">個人情報と安全対策</h2>
+      <div class="grid grid--2">
+        <div class="card">
+          <h3>AI に送るもの</h3>
+          <ul class="check-list mb-0">
+            <li>件名</li>
+            <li>本文（引用・署名を除き、個人情報を記号に置き換え、最大文字数で切り詰めたもの）</li>
+            <li>受信日、種別（メール／フォーム）、判定のための指示文（会社名・分類名と説明）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>AI に送らないもの</h3>
+          <ul class="ng-list mb-0">
+            <li>送信者のメールアドレス・表示名</li>
+            <li>添付ファイル</li>
+            <li>同じスレッドの過去のやり取り（既定。設定で「はい」にした場合のみ、同じようにマスキングして送ります）</li>
+            <li>ログシートの内容（レポートの総評を除く）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="table-wrap" style="margin-top:20px">
+        <table class="table-stack">
+          <thead><tr><th scope="col">心配なこと</th><th scope="col">対策</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">記号と元の値の対応表</th><td>実行中のメモリにだけ保持し、保存も送信もしません。返信の下書き・ログ・社内向けの通知を作るときに、Google の中で元の値に戻します。</td></tr>
+            <tr><th scope="row">API キー・Webhook URL（通知先の受け口）</th><td>シートには書かず、スクリプトプロパティ（スクリプト専用の保管場所）に保存します。ただし、スクリプトの編集権限を持つ人は閲覧できるため、スプレッドシートの編集権限は必要な人だけに付与してください。</td></tr>
+            <tr><th scope="row">権限</th><td>スプレッドシートは「このファイルだけ」の読み書き権限で動きます。必要な権限だけを明示しています。</td></tr>
+            <tr><th scope="row">本文に仕込まれた「指示」</th><td>本文はデータとして渡し、中の指示に従わないよう AI に指示します。AI の出力は形式を固定し、値の種類・長さを検証してから使います。</td></tr>
+            <tr><th scope="row">数式の埋め込み</th><td><code>=</code> などで始まる文字列は、シートの数式として実行されないようにして書き込みます。</td></tr>
+            <tr><th scope="row">誤送信</th><td>返信は下書きのみ。自動送信は既定でオフで、有効にしても厳しい条件付きです（下記）。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="caution">
+        <p><strong>自動送信について</strong>：自動送信は既定でオフで、推奨していません。有効にした場合でも、許可した分類・緊急度「低」・AI 判定が成功・期限があいまいでない・返信文に記号が残っていない・Gmail で受信したメール、のすべてを満たす場合に限って送信します。AI が事実と異なる内容を書く可能性があり、送信したメールは取り消せないためです。</p>
+      </div>
+    </section>
+
+    <!-- ===== 納品物と導入の流れ ===== -->
+    <section class="content-section" id="delivery" aria-labelledby="delivery-title">
+      <h2 id="delivery-title">納品物と導入の流れ</h2>
+      <div class="grid grid--2">
+        <div class="card">
+          <h3>納品物</h3>
+          <ul class="check-list mb-0">
+            <li>お客様用に設定したスプレッドシート（メニュー「AI受付」から操作）</li>
+            <li>設定ガイド（権限の許可、「このアプリは Google で確認されていません」と表示されたときの進め方、通知先の準備）</li>
+            <li>運用マニュアル（日々の運用、障害対応、再処理、担当者の引き継ぎ）</li>
+            <li>セキュリティ資料（データの流れ、AI に送るデータ、マスキングの限界、API キーの管理）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>費用について</h3>
+          <ul class="card-list mb-0">
+            <li>Google スプレッドシート・Gmail・Google フォーム・Apps Script は、Google アカウント（Google Workspace）の範囲内で使えます。</li>
+            <li>生成AIの API 利用料は、処理する件数と文字数に応じた従量課金です。お客様のアカウントでご契約いただき、単価は各社の公式料金表でご確認ください。</li>
+            <li>実際の利用量は「コスト」シートで月別に確認できます。</li>
+          </ul>
+        </div>
+      </div>
+      <h3>導入の流れ</h3>
+      <ol class="steps steps--5">
+        <li><h4>ヒアリング</h4><p>問い合わせの種類・件数、通知先、担当者、個人情報の扱いの方針を確認します（目安 30分〜1時間）。</p></li>
+        <li><h4>初期構築</h4><p>テンプレートのコピー、初期設定、分類・通知ルール・署名を設定します（目安 半日）。</p></li>
+        <li><h4>試験運用</h4><p>サンプルと実際のメールで判定結果を確認し、分類の説明文やキーワードを調整します（目安 1〜2週間）。</p></li>
+        <li><h4>本番運用</h4><p>自動処理を始めます。日報・週報・コストを見ながら改善します。</p></li>
+        <li><h4>引き継ぎ</h4><p>運用マニュアルに沿って、担当者へ引き継ぎます（目安 1時間）。</p></li>
+      </ol>
+      <p class="note" style="margin-top:20px">納品後2週間は、不具合や設定上の問題に対応します。目安の時間は、問い合わせの種類や通知先の数によって変わります。</p>
+    </section>
+
+    <!-- ===== 対応しないこと・注意点 ===== -->
+    <section class="content-section" id="limits" aria-labelledby="limits-title">
+      <h2 id="limits-title">対応しないこと・注意点</h2>
+      <ul class="ng-list">
+        <li><strong>AI の判定の精度 100% は保証できません。</strong>分類・期限・返信内容の最終判断と送信は、必ず担当者が行う運用を前提にしています。</li>
+        <li>返信メールの<strong>完全自動送信を前提とした運用</strong>（設定で有効にはできますが、推奨しません）</li>
+        <li>添付ファイル（PDF・画像など）の内容の読み取り</li>
+        <li>Gmail 以外のメールサーバーや、Slack・Chatwork のメッセージの取り込み</li>
+        <li>送信者ごとの過去の履歴を踏まえた判定（判定は1通ずつ行います。同じスレッド内の過去のやり取りは、設定で AI に渡せます）</li>
+        <li>大量配信の処理（1日数千件規模）。Apps Script の利用上限の範囲内での運用を想定しています</li>
+        <li>個人情報の<strong>完全な</strong>検出（マスキングはパターンによる検出です。本文中の第三者の氏名や、都道府県名などを含まない住所は残る場合があります）</li>
+        <li>Google による「確認済みアプリ」としての公開（社内利用を前提にしています）</li>
+      </ul>
+      <div class="note">
+        <p>病歴などの要配慮個人情報を含む問い合わせが想定される場合は、AI 判定を使わない（キーワードのルールだけで分類する）運用もご検討ください。</p>
+        <p>AI 事業者に送ったデータの保存期間や学習への利用の有無は、事業者・契約プランによって異なります。導入前に、各社の利用規約・データ利用ポリシーをご確認ください。</p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="content-section" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">よくある質問</h2>
+      <div class="faq">
+        <details>
+          <summary>どの AI を使えますか？</summary>
+          <div class="answer"><p>Claude（Anthropic）・OpenAI・Gemini（Google）を設定で切り替えられます。AI を使わず、キーワードのルールだけで分類する設定もできます。</p></div>
+        </details>
+        <details>
+          <summary>返信は自動で送られてしまいませんか？</summary>
+          <div class="answer"><p>送られません。既定では Gmail に下書きを作るだけで、送信は担当者が内容を確認して行います。</p></div>
+        </details>
+        <details>
+          <summary>API キーがなくても試せますか？</summary>
+          <div class="answer"><p>はい。メニューの「サンプルで試す」で、API キーなしで全体の流れを確認できます（通知・下書きは実際には送信・作成しません）。</p></div>
+        </details>
+        <details>
+          <summary>「このアプリは Google で確認されていません」と表示されます。</summary>
+          <div class="answer"><p>社内利用のスクリプト（一般公開していないもの）のため、権限の確認画面でこの表示が出ます。進め方は設定ガイドで説明しています。</p></div>
+        </details>
+        <details>
+          <summary>問い合わせが多い日でも止まりませんか？</summary>
+          <div class="answer"><p>Apps Script には1回あたり・1日あたりの実行時間の上限があります。上限を見越して処理を分割し、途中で止まっても次回に続きから再開します。1日の上限の70%で管理者に警告、90%で処理件数を絞ってレポートなどを止め、98%で当日の処理を止めます。</p></div>
+        </details>
+        <details>
+          <summary>あとから分類や通知先を変えられますか？</summary>
+          <div class="answer"><p>はい。「分類」「通知先」「担当者」「通知ルール」のシートを編集して変更できます。「設定チェック」で設定の誤りを確認できます。</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== お問い合わせ ===== -->
+    <section class="content-section" id="contact" aria-labelledby="contact-title">
+      <div class="cta-band">
+        <h2 id="contact-title">お問い合わせ</h2>
+        <p>問い合わせの種類・件数・通知先などをお聞かせください。ご相談は、各プラットフォームのメッセージ機能からお願いします。</p>
+        <p class="mb-0"><a class="btn" href="/#contact">お問い合わせ方法を見る</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav aria-label="フッターメニュー">
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/works/chohyo/">帳票データ取り出しツール</a></li>
+        <li><a href="/works/ai-inbox/" aria-current="page">AI 受付アシスタント</a></li>
+        <li><a href="/works/web-monitor/">Web監視・入力自動化</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+    <p class="disclaimer">掲載している会社名・商品名・数値はすべて架空のデモデータです。</p>
+    <p>本サイトは外部の解析ツール・広告を使用していません。</p>
+    <!-- EDIT: 表示名 -->
+    <p>© 2026 <span class="todo">要入力</span></p>
+    <!-- /EDIT -->
+  </div>
+</footer>
+</body>
+</html>

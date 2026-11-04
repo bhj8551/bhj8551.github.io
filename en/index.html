@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Business Automation Tools | PDF, Excel, Email and Web Automation</title>
+<meta name="description" content="Automation tools for small offices: extract data from PDF and Excel invoices into CSV with built-in cross-checks, triage Gmail and Google Forms inquiries with generative AI, and monitor websites or auto-fill admin screens from CSV.">
+<link rel="canonical" href="https://bhj8551.github.io/en/">
+<link rel="alternate" hreflang="ja" href="https://bhj8551.github.io/">
+<link rel="alternate" hreflang="en" href="https://bhj8551.github.io/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Business Automation Tools">
+<meta property="og:title" content="Business Automation Tools | PDF, Excel, Email and Web Automation">
+<meta property="og:description" content="Document data extraction with cross-checks, AI inquiry triage with PII masking, and polite web monitoring / form auto-fill. Results are built for human review.">
+<meta property="og:url" content="https://bhj8551.github.io/en/">
+<meta property="og:image" content="https://bhj8551.github.io/assets/img/og/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Business automation tools: PDF, Excel, email and web automation built for human review">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f4e79">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+<style>
+  /* English text: tighter line height and no CJK line-break rules */
+  body { line-height: 1.65; overflow-wrap: break-word; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/en/">
+      <img src="/favicon.svg" alt="" width="32" height="32">
+      <span>Business Automation Tools<small>Less manual work with PDFs, Excel, email and the web</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#limits">What I don't do</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/" lang="ja" hreflang="ja">日本語</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <span class="eyebrow">AUTOMATION TOOL DEVELOPMENT</span>
+      <h1 id="hero-title">Automating repetitive office work, in a form people can easily check.</h1>
+      <p class="lead">I build small, practical tools for non-technical office, accounting and sales staff: copying data out of PDF invoices, sorting inquiry emails, checking competitor prices, and entering data into admin screens. Results come with cross-checks and “needs review” flags, so the final check stays with a person.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#tools">See the tools</a>
+        <a class="btn btn--ghost" href="#contact">How to contact me</a>
+      </div>
+      <p class="small muted" style="margin-top:16px">The detailed pages for each tool are in Japanese. All demo screens, company names and product names on this site are fictional.</p>
+    </div>
+  </section>
+
+  <section class="section" id="tools" aria-labelledby="tools-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">TOOLS</span>
+        <h2 id="tools-title">Three working tools</h2>
+        <p>Each tool runs today on fictional demo data and is adapted to the client’s documents, notification channels or target screens.</p>
+      </div>
+      <div class="grid grid--3">
+        <article class="card card--tool">
+          <div class="card-body">
+            <h3>Document Data Extractor</h3>
+            <p class="subtitle">PDF / Excel / CSV → one-row-per-record CSV + review workbook</p>
+            <ul class="card-list">
+              <li>Reads invoices, order lists and delivery notes from PDF using character coordinates, so table columns stay in order</li>
+              <li>Merges Excel/CSV files with different column names and layouts</li>
+              <li>Normalizes Japanese era dates, full-width characters, company suffixes and amounts (original values are kept)</li>
+              <li>Cross-checks totals, line items, duplicates and invoice registration number format; only rows that fail are flagged “needs review” in yellow</li>
+              <li>Desktop app for Windows / Mac; no internet connection needed, no data sent outside</li>
+            </ul>
+            <p class="small"><strong>Measured on fictional sample documents</strong> (field-level accuracy against ground truth):</p>
+            <ul class="small">
+              <li>Round 1 — dev set: 99.9–100.0%; holdout set (layout variations, evaluated once at the end): 100.0% for all four document types</li>
+              <li>Round 2 — holdout2 (25 files; pages without repeated headers, two-line headers, combined delivery note/invoice): 100.0% for all four types, 13/13 seeded anomalies flagged, 0 misreads without a flag</li>
+            </ul>
+            <p class="honest small">Measured on fictional sample documents. Accuracy on your own documents is checked in a free sample test before quoting.<br><span lang="ja">架空のサンプル帳票での計測。お客様の帳票での精度は、事前の無料サンプルチェックで確認します。</span></p>
+          </div>
+          <div class="card-foot"><a class="btn btn--ghost" href="/works/chohyo/" hreflang="ja">Details (Japanese)<span class="visually-hidden">: Document Data Extractor</span></a></div>
+        </article>
+
+        <article class="card card--tool">
+          <div class="card-body">
+            <h3>AI Inquiry Assistant</h3>
+            <p class="subtitle">Gmail / Google Forms + generative AI, as a Google Apps Script template</p>
+            <ul class="card-list">
+              <li>Classifies inquiries, sets urgency, summarizes them and extracts deadlines; vague deadlines (“sometime next week”) are flagged for review</li>
+              <li>Masks emails, phone numbers, addresses, card numbers and sender names before anything is sent to the AI</li>
+              <li>Notifies the person in charge via Slack, Chatwork, email, LINE or Google Chat</li>
+              <li>Creates Gmail reply <em>drafts</em> only; auto-send is off by default</li>
+              <li>Works with Claude, OpenAI or Gemini; falls back to keyword rules if the AI call fails; daily reminders and reports</li>
+            </ul>
+            <p class="small">AI output is not guaranteed to be 100% accurate, and pattern-based masking cannot catch every piece of personal data. A person makes the final decision and sends the reply.</p>
+          </div>
+          <div class="card-foot"><a class="btn btn--ghost" href="/works/ai-inbox/" hreflang="ja">Details (Japanese)<span class="visually-hidden">: AI Inquiry Assistant</span></a></div>
+        </article>
+
+        <article class="card card--tool">
+          <div class="card-body">
+            <h3>Web Monitor &amp; Form Auto-fill</h3>
+            <p class="subtitle">Scheduled price / stock / new-item checks + CSV-to-admin-screen entry (RPA)</p>
+            <ul class="card-list">
+              <li>Detects new items, removed items, price and stock changes; color-coded Excel with trend charts; notifies only when something changed</li>
+              <li>Detects likely site-structure changes and does not use that run as the comparison baseline, so wrong data does not pile up</li>
+              <li>Respects robots.txt and keeps at least 1 second between requests to external sites</li>
+              <li>Fills admin screens from CSV rows marked as pending, writes results back to the CSV, checks for duplicates, supports dry runs</li>
+              <li>Uses the Edge or Chrome already installed on the PC; Windows / macOS</li>
+            </ul>
+            <p class="small">A short screen recording of the form auto-fill demo (fictional admin screen) is on the Japanese page.</p>
+          </div>
+          <div class="card-foot"><a class="btn btn--ghost" href="/works/web-monitor/" hreflang="ja">Details (Japanese)<span class="visually-hidden">: Web Monitor &amp; Form Auto-fill</span></a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="approach" aria-labelledby="approach-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">APPROACH</span>
+        <h2 id="approach-title">Built for what happens after automation</h2>
+      </div>
+      <div class="grid grid--2">
+        <div class="card"><h3>Cross-checks and “needs review” flags</h3><p>Subtotal + tax = total, quantity × unit price = amount, duplicates and empty required fields are checked automatically, so staff only re-check flagged rows.</p></div>
+        <div class="card"><h3>Personal data masked before AI; humans decide</h3><p>Personal data is replaced with tokens such as <code>[メール1]</code> before it reaches the AI provider. Replies stay as drafts until a person sends them.</p></div>
+        <div class="card"><h3>No silent failures on site redesigns</h3><p>A sudden drop in item count or missing required fields triggers a “possible structure change” alert instead of recording empty or wrong values.</p></div>
+        <div class="card"><h3>Free sample check before a quote</h3><p>I test with a few of your real files (personal data can be blacked out) and report the results before quoting.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">PROCESS</span>
+        <h2 id="process-title">How a project runs</h2>
+      </div>
+      <ol class="steps steps--6">
+        <li><h3>Consultation</h3><p>Your current workflow, files, volumes and pain points.</p></li>
+        <li><h3>Free sample accuracy check</h3><p>A test run on your sample files, with a short report.</p></li>
+        <li><h3>Quote</h3><p>Scope, price and schedule based on the results.</p></li>
+        <li><h3>Development and progress reports</h3><p>Configuration and development with interim reports and test runs.</p></li>
+        <li><h3>Delivery and walkthrough</h3><p>Ready-to-use tool, a manual written for non-technical users, and an explanation.</p></li>
+        <li><h3>2 weeks of bug fixes after delivery</h3><p>Fixes for reading errors or operation issues found after delivery.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="limits" aria-labelledby="limits-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">LIMITS</span>
+        <h2 id="limits-title">What I don’t do</h2>
+      </div>
+      <ul class="ng-list">
+        <li>Bypassing CAPTCHAs, login limits, IP blocks or any other access restriction</li>
+        <li>Scraping that violates a site’s terms of service or robots.txt, or collecting members-only pages without permission</li>
+        <li>Automated purchasing, bidding or reservation grabbing</li>
+        <li>Automating input into systems the client is not authorized to operate</li>
+        <li>Fully automatic email replies as the default way of working</li>
+        <li>Reading scanned (image-only) or handwritten PDFs without an optional OCR setup</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-box">
+        <h2 id="contact-title">Contact</h2>
+        <p>Please contact me through the messaging system of the platform you use. Because platforms prohibit exchanging direct contact details before a contract, no email address or phone number is listed here.</p>
+        <div class="platforms">
+          <!-- EDIT: Upwork profile URL. Replace the span below with <a class="btn" href="(Upwork profile URL)">Contact me on Upwork</a> -->
+          <span class="btn btn--pending">Upwork profile (URL TBD)</span>
+          <!-- /EDIT -->
+        </div>
+        <!-- EDIT: Languages (e.g. Japanese, Korean, English) -->
+        <p class="mb-0"><strong>Languages:</strong> <span class="todo">TBD</span></p>
+        <!-- /EDIT -->
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav aria-label="Footer menu">
+      <ul>
+        <li><a href="/en/">English summary</a></li>
+        <li><a href="/" lang="ja" hreflang="ja">日本語トップ</a></li>
+        <li><a href="/works/chohyo/" hreflang="ja">Document Data Extractor (JA)</a></li>
+        <li><a href="/works/ai-inbox/" hreflang="ja">AI Inquiry Assistant (JA)</a></li>
+        <li><a href="/works/web-monitor/" hreflang="ja">Web Monitor &amp; Form Auto-fill (JA)</a></li>
+      </ul>
+    </nav>
+    <p class="disclaimer">All company names, product names and figures shown on this site are fictional demo data.</p>
+    <p class="disclaimer" lang="ja">掲載している会社名・商品名・数値はすべて架空のデモデータです。</p>
+    <p>No analytics or advertising trackers are used on this site.</p>
+    <!-- EDIT: Display name -->
+    <p>© 2026 <span class="todo">TBD</span></p>
+    <!-- /EDIT -->
+  </div>
+</footer>
+</body>
+</html>

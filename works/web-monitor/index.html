@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web監視・入力自動化ツール｜競合サイトの価格・在庫・新着チェックと管理画面への自動入力</title>
+<meta name="description" content="競合サイトの価格・在庫・新着情報を定期的に巡回して変わったところだけを Excel と通知でお知らせする「Web監視」と、CSV の内容を管理画面へ自動で入力する「入力自動化（RPA）」のツールです。利用規約と robots.txt を守って動作します。">
+<link rel="canonical" href="https://bhj8551.github.io/works/web-monitor/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="業務自動化ツール開発">
+<meta property="og:title" content="Web監視・入力自動化ツール｜価格・在庫・新着のチェックと管理画面への自動入力">
+<meta property="og:description" content="変わったところだけを Excel と通知でお知らせ。サイトの構造変更を検知して誤ったデータをためません。CSV から管理画面への自動入力にも対応。">
+<meta property="og:url" content="https://bhj8551.github.io/works/web-monitor/">
+<meta property="og:image" content="https://bhj8551.github.io/assets/img/og/og-web-monitor.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Web監視・入力自動化ツール：価格・在庫・新着のチェックと管理画面への自動入力">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f4e79">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">
+      <img src="/favicon.svg" alt="" width="32" height="32">
+      <span>業務自動化ツール開発<small>PDF・Excel・メール・Webの手作業を減らす</small></span>
+    </a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="/#services">サービス</a></li>
+        <li><a href="/#strengths">強み</a></li>
+        <li><a href="/#process">進め方</a></li>
+        <li><a href="/#faq">よくある質問</a></li>
+        <li><a href="/#profile">プロフィール</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero" aria-labelledby="page-title">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <ol>
+          <li><a href="/">トップ</a></li>
+          <li><a href="/#services">サービス</a></li>
+          <li aria-current="page">Web監視・入力自動化ツール</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">Webサイトの監視と管理画面への入力</span>
+      <h1 id="page-title">Web監視・入力自動化ツール</h1>
+      <p class="lead">競合サイトの価格・在庫・新着情報を<strong>毎日自動で巡回し、変わったところだけをお知らせする「Web監視」</strong>と、CSV の内容を<strong>管理画面へ自動で入力・登録する「入力自動化（RPA：パソコン操作の自動化）」</strong>をひとつにまとめたツールです。設定は Excel・CSV・設定ファイルで行い、プログラムを書き換える必要はありません。</p>
+      <ul class="hero-tags" aria-label="技術・環境">
+        <li><span class="chip">Python</span></li>
+        <li><span class="chip">Windows 10 / 11・macOS</span></li>
+        <li><span class="chip">Microsoft Edge・Google Chrome</span></li>
+        <li><span class="chip">Excel・CSV・Google スプレッドシート出力</span></li>
+      </ul>
+      <nav class="toc" aria-label="このページの目次">
+        <ul>
+          <li><a href="#worries">こんなお悩み</a></li>
+          <li><a href="#features">できること</a></li>
+          <li><a href="#flow">処理の流れ</a></li>
+          <li><a href="#demo">デモ（動画・画面）</a></li>
+          <li><a href="#manners">マナーと安全対策</a></li>
+          <li><a href="#delivery">納品物と導入の流れ</a></li>
+          <li><a href="#limits">対応しないこと・注意点</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== こんなお悩み ===== -->
+    <section class="content-section" id="worries" aria-labelledby="worries-title">
+      <h2 id="worries-title">こんなお悩みに</h2>
+      <ul class="worry-list">
+        <li>競合ショップの価格や在庫を、毎朝ブラウザで1件ずつ確認している</li>
+        <li>新着の商品・求人・案件・入札情報を見逃したくないが、毎日見に行く時間がない</li>
+        <li>以前のツールは、サイトのリニューアル後も気づかないまま空の値や間違った値を記録し続けていた</li>
+        <li>ツールが今日もちゃんと動いたのか分からず不安</li>
+        <li>管理画面への商品登録を、CSV を見ながら1件ずつ手入力している</li>
+        <li>自動化したいが、プログラムの知識はない。ダブルクリックで動かしたい</li>
+      </ul>
+    </section>
+
+    <!-- ===== できること ===== -->
+    <section class="content-section" id="features" aria-labelledby="features-title">
+      <h2 id="features-title">できること</h2>
+      <h3>1. Web監視（収集 → 変化の検知 → 記録 → 通知）</h3>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">機能</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">監視対象の管理</th><td>サイトごとの設定ファイルで URL・ページ送り・取得する項目を指定します。URL の一覧は Excel / CSV でも管理できます。</td></tr>
+            <tr><th scope="row">マナーを守った収集</th><td>robots.txt の確認、アクセスの間隔（外部サイトは最低1秒）、タイムアウト、失敗時の再試行（待ち時間を倍々に延長）、連絡先入りの User-Agent（アクセス元の名乗り）。</td></tr>
+            <tr><th scope="row">変化の検知</th><td>前回との違いから、<strong>新着・掲載終了・価格変動（前回→今回、変動率）・在庫変化・内容変更</strong>を判定します。</td></tr>
+            <tr><th scope="row">履歴の蓄積</th><td>すべての取得結果と変更履歴をデータベース（SQLite：ファイル1つで動くデータベース）にためます。</td></tr>
+            <tr><th scope="row">出力</th><td>変更箇所を色分けした <strong>Excel</strong>（価格・在庫の推移グラフ付き）、<strong>CSV</strong>（BOM付きUTF-8 / Shift_JIS）、<strong>Google スプレッドシート</strong>。</td></tr>
+            <tr><th scope="row">通知</th><td><strong>変化があったときだけ</strong> Slack・Chatwork・メール・LINE に通知します。</td></tr>
+            <tr><th scope="row">構造変更の検知</th><td>取得件数の急な減少や必須項目の欠けを検知すると「<strong>構造変更の可能性</strong>」を通知し、誤ったデータを比較の基準にしません。</td></tr>
+            <tr><th scope="row">稼働確認</th><td>実行のたびに日時・件数・エラーを記録します。1日1回の「<strong>稼働報告</strong>」で、変化がない日も正常に動いていることを確認できます。</td></tr>
+            <tr><th scope="row">JavaScript のページ</th><td>表示に JavaScript が必要なページも、ブラウザ経由で取得できます（任意）。</td></tr>
+            <tr><th scope="row">詳細ページの取得</th><td>一覧から各商品の詳細ページをたどり、在庫数・JANコードなどを取得します（1回あたりの上限件数とアクセス間隔を守って取得。任意）。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>2. 入力自動化（CSV → 管理画面）</h3>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">機能</th><th scope="col">内容</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">未処理の行だけ登録</th><td>CSV の「ステータス」が「未掲載」（または空欄）の行だけを、ログイン → 入力 → 登録します。</td></tr>
+            <tr><th scope="row">結果の書き戻し</th><td>成功は「掲載完了」（登録番号・処理日時も記録）、失敗は「エラー（理由）」に更新して CSV を保存します。</td></tr>
+            <tr><th scope="row">テスト実行</th><td>入力までを行い、登録ボタンは押しません（dry-run）。入力後の画面をスクリーンショットで確認できます。</td></tr>
+            <tr><th scope="row">重複チェック</th><td>実行前に CSV 内の同じキー（SKU など）の行を見つけて警告し、その行は送信せず「エラー（重複…）」にします（既定で有効）。</td></tr>
+            <tr><th scope="row">途中からの再開</th><td>1行ごとに保存するため、止まってもそのまま再実行すれば続きから処理します。登録中に中断した行は、二重登録を避けるため<span class="badge-check">要確認</span>にします。</td></tr>
+            <tr><th scope="row">エラー時の記録</th><td>エラーの画面をスクリーンショットで保存します。連続でエラーになった場合は自動で止まります。</td></tr>
+            <tr><th scope="row">結果の通知</th><td>完了・エラー・要確認の件数と、エラーの理由（多い順）を Slack・Chatwork・メール・LINE に通知できます（任意）。</td></tr>
+            <tr><th scope="row">確実な待機</th><td>画面の部品が表示されるまで待ってから操作します（固定の待ち時間に頼りません）。</td></tr>
+            <tr><th scope="row">ブラウザの同梱不要</th><td>パソコンにインストール済みの Microsoft Edge / Google Chrome をそのまま使います。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caution"><strong>ご注意：</strong>入力自動化は、<strong>お客様ご自身が正当な権限をお持ちのシステム</strong>（自社の管理画面や、利用規約で自動操作が認められているサービス）だけを対象とします。</p>
+    </section>
+
+    <!-- ===== 処理の流れ ===== -->
+    <section class="content-section" id="flow" aria-labelledby="flow-title">
+      <h2 id="flow-title">処理の流れ</h2>
+      <div class="grid grid--2">
+        <div>
+          <h3>Web監視</h3>
+          <ol class="flow" aria-label="Web監視の処理の流れ">
+            <li><div class="flow-box"><strong>設定を読み込む</strong><span>サイトごとの設定ファイル・URL一覧（Excel / CSV）</span></div></li>
+            <li><div class="flow-box flow-box--branch"><strong>robots.txt を確認</strong><span>許可されていないページは取得せず、エラーとして通知</span></div></li>
+            <li><div class="flow-box"><strong>ページを取得</strong><span>アクセス間隔・再試行・タイムアウトを守って取得</span></div></li>
+            <li><div class="flow-box"><strong>項目を取り出す</strong><span>商品名・価格・在庫など</span></div></li>
+            <li><div class="flow-box flow-box--branch"><strong>構造チェック</strong><span>件数の急な減少・必須項目の欠けがあれば「構造変更の可能性」を通知し、基準データにしない</span></div></li>
+            <li><div class="flow-box"><strong>前回との違いを判定</strong><span>新着・価格・在庫・掲載終了</span></div></li>
+            <li><div class="flow-box"><strong>記録と出力</strong><span>履歴データベース、Excel / CSV / スプレッドシート</span></div></li>
+            <li><div class="flow-box flow-box--human"><strong>変化があったときだけ通知</strong><span>Slack・Chatwork・メール・LINE。1日1回の稼働報告も</span></div></li>
+          </ol>
+        </div>
+        <div>
+          <h3>入力自動化</h3>
+          <ol class="flow" aria-label="入力自動化の処理の流れ">
+            <li><div class="flow-box"><strong>CSV を読み込む</strong><span>ステータスが「未掲載」の行だけが対象</span></div></li>
+            <li><div class="flow-box flow-box--branch"><strong>送信前チェック</strong><span>必須・形式・重複。問題のある行は送信せず「エラー（理由）」</span></div></li>
+            <li><div class="flow-box"><strong>ブラウザを起動してログイン</strong><span>インストール済みの Edge / Chrome</span></div></li>
+            <li><div class="flow-box"><strong>1行ずつ入力して登録</strong><span>処理中 → 入力 → 登録</span></div></li>
+            <li><div class="flow-box"><strong>結果を CSV に書き戻す</strong><span>成功は「掲載完了」と登録番号、失敗は「エラー（理由）」とスクリーンショット</span></div></li>
+            <li><div class="flow-box flow-box--human"><strong>結果を確認</strong><span>エラーの行を直して再実行すると、その行だけを再処理</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== デモ ===== -->
+    <section class="content-section" id="demo" aria-labelledby="demo-title">
+      <h2 id="demo-title">デモ（動画・画面）</h2>
+      <p class="honest">以下は、ツールに同梱している<strong>架空の管理画面</strong>と<strong>架空のECサイト</strong>（実行のたびに価格・在庫・商品が変わるデモ用サイト）に対して、ツールを実際に動かした結果です。外部の実在サイトにはアクセスしていません。ショップ名・商品名・人名はすべて架空です。</p>
+
+      <h3>入力自動化：CSV の内容を管理画面へ自動入力（動画）</h3>
+      <figure>
+        <video controls muted playsinline preload="none" width="1000" height="760" poster="/assets/img/web-monitor/rpa_demo_poster.webp" aria-describedby="rpa-video-desc">
+          <source src="/assets/video/rpa_demo.mp4" type="video/mp4">
+          <p>お使いのブラウザでは動画を再生できません。<a href="/assets/video/rpa_demo.mp4">動画ファイル（MP4・約190KB）</a>をダウンロードしてご覧ください。</p>
+        </video>
+        <figcaption id="rpa-video-desc">約17秒・音声なし。架空の管理画面にログインし、サンプル CSV の「未掲載」の行を1件ずつ入力・登録していく様子です。デモ用のコマンド（<code>wmrpa demo rpa</code>）を実際に実行し、ブラウザの画面を録画しました。動きを目で追えるよう操作の間隔を0.35秒にし、録画用に最後に登録後の商品一覧を表示しています。重複・空欄のある行は送信前のチェックで止まるため、画面には出てきません。</figcaption>
+      </figure>
+
+      <h4>実行後の CSV（サンプル CSV で実行した実際の結果）</h4>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">SKU</th><th scope="col">商品名</th><th scope="col">ステータス</th><th scope="col">登録番号</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" data-label="SKU">SKU-3000</th><td data-label="商品名">陶器 ソープディッシュ</td><td data-label="ステータス">掲載完了（実行前から登録済みのためスキップ）</td><td data-label="登録番号">1000</td></tr>
+            <tr><th scope="row" data-label="SKU">SKU-3001</th><td data-label="商品名">竹製 カトラリーセット</td><td data-label="ステータス">エラー（重複: SKU「SKU-3001」が 3・6 行目にあります）</td><td data-label="登録番号">—</td></tr>
+            <tr><th scope="row" data-label="SKU">SKU-3002</th><td data-label="商品名">耐熱ガラス マグ 2個組</td><td data-label="ステータス">掲載完了（価格「1,980円」→「1980」に整形して入力）</td><td data-label="登録番号">1001</td></tr>
+            <tr><th scope="row" data-label="SKU">SKU-3003</th><td data-label="商品名">リネン ランチョンマット</td><td data-label="ステータス">掲載完了</td><td data-label="登録番号">1002</td></tr>
+            <tr><th scope="row" data-label="SKU">SKU-3001</th><td data-label="商品名">竹製 カトラリーセット（重複）</td><td data-label="ステータス">エラー（重複: SKU「SKU-3001」が 3・6 行目にあります）</td><td data-label="登録番号">—</td></tr>
+            <tr><th scope="row" data-label="SKU">SKU-3004</th><td data-label="商品名">（空欄）</td><td data-label="ステータス">エラー（「商品名」が空です）</td><td data-label="登録番号">—</td></tr>
+            <tr><th scope="row" data-label="SKU">SKU-3005</th><td data-label="商品名">ウール 鍋つかみ</td><td data-label="ステータス">掲載完了（「2026年11月10日」を日付欄に変換して入力）</td><td data-label="登録番号">1003</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">同じ SKU の行が2つあるため、どちらが正しいか判断できず、両方とも送信前に止めています。不要な行を削除して再実行すると、残した行が登録されます。</p>
+
+      <h4>結果の通知文（実際の出力）</h4>
+<pre class="message-sample">【入力自動化・要確認】デモ管理画面: 完了 3 件・エラー 3 件・要確認 0 件
+対象: デモ管理画面
+実行日時: 2026-11-04 02:17
+CSV: data/demo/rpa_items.csv
+結果: 完了 3 行 / エラー 3 行 / 要確認 0 行（処理対象 6 行）
+登録済みのためスキップ: 1 行
+
+■ エラーの理由（多い順）
+・重複（同じキーの行がCSV内に複数あります）: 2 行（3・6 行目）
+・「商品名」が空です: 1 行（7 行目）
+
+■ 重複の警告（同じキーの行が CSV 内に複数あります）
+・SKU「SKU-3001」: 3・6 行目
+
+■ 対応
+・エラーの行は CSV の内容を修正し、「--retry-errors」付きで再実行すると再処理します。</pre>
+
+      <figure>
+        <a class="zoom" href="/assets/img/web-monitor/rpa_error_screenshot.webp"><img src="/assets/img/web-monitor/rpa_error_screenshot.webp" width="1280" height="900" loading="lazy" alt="架空の管理画面「商品の新規登録」で、「この商品コード（SKU）は既に登録されています」というエラーが表示されている画面"></a>
+        <figcaption>登録ボタンを押した後に管理画面側でエラーになった行は、その時点の画面を自動で保存します（例：同じ SKU を二重に登録しようとした場合）。</figcaption>
+      </figure>
+
+      <h3>Web監視：変わったところだけをお知らせ</h3>
+      <figure>
+        <a class="zoom" href="/assets/img/web-monitor/demo_shop.webp"><img src="/assets/img/web-monitor/demo_shop.webp" width="1100" height="760" loading="lazy" alt="架空のECサイト「くらしの道具店ミナモ（架空）」の商品一覧。商品ごとに SKU・商品名・価格・在庫状況が並んでいる"></a>
+        <figcaption>監視対象の例：ツールに同梱しているデモ用の架空ECサイト。実行のたびに価格・在庫・商品が変わります。</figcaption>
+      </figure>
+
+      <h4>通知文（Slack・Chatwork・メール・LINE 共通の本文。実際の出力）</h4>
+<pre class="message-sample">【Web監視】デモショップ（架空）: 変更 6 件（新着1・価格変動2・在庫変化3）
+サイト: デモショップ（架空）
+実行日時: 2026-11-04 04:55
+取得件数: 31 件（前回 30 件）
+
+■ 新着（1 件）
+・SKU-2001 竹製 カトラリーセット（1,480円 / 在庫あり）
+  http://127.0.0.1:45963/products/SKU-2001
+
+■ 価格変動（2 件）
+・SKU-1024 陶器 平皿 21cm 2枚組: 2,970円 → 2,530円（-14.8%・値下げ）
+  http://127.0.0.1:45963/products/SKU-1024
+・SKU-1029 天然木 鍋敷き: 1,210円 → 1,370円（+13.2%・値上げ）
+  http://127.0.0.1:45963/products/SKU-1029
+
+■ 在庫変化（3 件）
+・SKU-1002 ステンレス保温ボトル 500ml: 在庫あり → 入荷待ち
+・SKU-1003 琺瑯ミルクパン 14cm: 在庫あり → 残りわずか
+・SKU-1014 手付き 土鍋 1〜2人用: 在庫あり → 在庫切れ</pre>
+      <p class="small muted">URL はデモ用サイト（このパソコンの中で動かしたもの）のアドレスです。ポート番号と日時は実行ごとに変わります。実際の通知画面（Slack・Chatwork・LINE）のスクリーンショットは、お客様環境での導入時に確認いただけます。</p>
+
+      <figure>
+        <a class="zoom" href="/assets/img/web-monitor/excel_changes.webp"><img src="/assets/img/web-monitor/excel_changes.webp" width="1062" height="178" loading="lazy" alt="Excel の「変更点」シート。種別（新着・価格変動・在庫変化）、キー、名称、項目、前回値、今回値、変動率、URL の列があり、種別ごとに行が色分けされている"></a>
+        <figcaption>Excel「変更点」シート：今回の変更の一覧です（新着＝緑、値上げ＝赤、値下げ＝青、在庫変化＝黄）。</figcaption>
+      </figure>
+      <figure>
+        <a class="zoom" href="/assets/img/web-monitor/excel_latest.webp"><img src="/assets/img/web-monitor/excel_latest.webp" width="992" height="698" loading="lazy" alt="Excel の「最新一覧」シート。取得した31件の商品が並び、状態列に「在庫変化」「価格変動（値下げ）」「価格変動（値上げ）」「新着」と表示された行のセルに色が付いている"></a>
+        <figcaption>Excel「最新一覧」シート：取得した全件です。変わったセルに色が付きます。</figcaption>
+      </figure>
+      <figure>
+        <a class="zoom" href="/assets/img/web-monitor/excel_trend.webp"><img src="/assets/img/web-monitor/excel_trend.webp" width="1062" height="770" loading="lazy" alt="Excel の「価格の推移」シート。変動の大きい上位10件の価格を折れ線グラフで表示し、その下に順位・キー・名称・最小・最大・変動の大きさ・最新の表がある"></a>
+        <figcaption>Excel「価格の推移」シート：直近の取得結果から、変動の大きい上位10件をグラフにします（デモでは8回続けて実行。通常は1日1回などの間隔で記録されます）。</figcaption>
+      </figure>
+      <p class="muted small">Excel の画面は Linux 上の LibreOffice Calc（表計算ソフト）で表示し、日本語フォントで撮影したものです。Microsoft Excel では見た目が多少異なります。画像を押すと、元の大きさで表示します。</p>
+
+      <h4>サイトのデザインが変わって値が取れなくなったとき（実際の出力）</h4>
+<pre class="message-sample">【Web監視・要確認】デモショップ（架空）: 構造変更の可能性があります
+■ 検知した内容
+・必須項目「価格」の欠損率が 100% です（しきい値 20%）
+■ 考えられる原因
+・サイトのデザイン変更により、設定したセレクタが合わなくなった
+・メンテナンス中、アクセス制限、ログイン切れなどで通常と異なるページが表示された
+■ 対応
+・誤った値を蓄積しないよう、今回のデータは比較の基準に使用していません（変更通知も停止しています）。
+・demo_shop.yaml のセレクタを確認してください。</pre>
+      <p class="small">デモ用サイトのデザインを切り替えて再現した例です（一部抜粋）。「セレクタ」は、ページのどこから値を取り出すかを指定する設定です。同じ警告は24時間に1回だけ通知します。</p>
+    </section>
+
+    <!-- ===== マナーと安全対策 ===== -->
+    <section class="content-section" id="manners" aria-labelledby="manners-title">
+      <h2 id="manners-title">マナーと安全対策</h2>
+      <div class="grid grid--2">
+        <div class="card">
+          <h3>Web監視</h3>
+          <ul class="check-list mb-0">
+            <li>robots.txt で禁止されているページは取得しません（この確認は無効にしないでください）</li>
+            <li>外部サイトへのアクセス間隔は最低1秒。ページ送りは1つの URL あたり最大200ページまで</li>
+            <li>失敗時は待ち時間を倍々に延ばして再試行し、相手のサイトに負担をかけません</li>
+            <li>構造変更の可能性があるときは、その回のデータを比較の基準にしません</li>
+            <li>1日1回の稼働報告で、止まっていないかを確認できます</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>入力自動化</h3>
+          <ul class="check-list mb-0">
+            <li>テスト実行（登録ボタンを押さずに入力まで）で、事前に入力内容を確認できます</li>
+            <li>送信前に必須項目・形式・重複をチェックします</li>
+            <li>登録中に中断した行は、二重登録を避けるため「要確認」にします</li>
+            <li>連続でエラーになったら自動で止まります（画面の変更や障害の可能性）</li>
+            <li>ログイン情報は設定ファイルとは別のファイル（.env）に保存します</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 納品物と導入の流れ ===== -->
+    <section class="content-section" id="delivery" aria-labelledby="delivery-title">
+      <h2 id="delivery-title">納品物と導入の流れ</h2>
+      <div class="grid grid--2">
+        <div class="card">
+          <h3>納品物</h3>
+          <ul class="check-list mb-0">
+            <li>ツール一式（Windows は <code>setup.bat</code>、Mac は <code>setup.command</code> をダブルクリックでセットアップ。Python などの必要な部品は自動でインストール）</li>
+            <li>メニュー（<code>run.bat</code> / <code>run.command</code>）から、監視・状況確認・入力自動化・設定ウィザードを実行</li>
+            <li>監視するサイトごとの設定と、入力自動化の設定（管理画面の URL と入力欄の対応）</li>
+            <li>毎日の自動実行の登録（Windows は毎日9:00に登録するファイル、Mac は登録用のスクリプト）</li>
+            <li>操作マニュアル</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>動作環境</h3>
+          <dl class="dl-grid">
+            <div><dt>OS</dt><dd>Windows 10 / 11、macOS</dd></div>
+            <div><dt>ブラウザ</dt><dd>Microsoft Edge または Google Chrome（入力自動化と、JavaScript が必要なページの監視のみ。インストール済みのものを使用）</dd></div>
+            <div><dt>ネットワーク</dt><dd>セットアップ時と、監視・通知・管理画面への接続時に必要です</dd></div>
+          </dl>
+        </div>
+      </div>
+      <h3>導入の流れ</h3>
+      <ol class="steps steps--5">
+        <li><h4>ヒアリング</h4><p>監視したいサイト・項目・頻度、入力したい画面と CSV の内容、通知先をお伺いします。</p></li>
+        <li><h4>事前確認</h4><p>対象サイトの利用規約と robots.txt、管理画面の操作権限を確認します。</p></li>
+        <li><h4>設定・試験運用</h4><p>サイトと入力の設定を作り、テスト実行で結果をご確認いただきます。</p></li>
+        <li><h4>納品・操作説明</h4><p>お客様のパソコンへのセットアップ、定期実行の登録、操作方法のご説明を行います。</p></li>
+        <li><h4>運用・保守</h4><p>納品後2週間は不具合に対応します。構造変更への対応や監視対象の追加は、必要に応じてご相談ください。</p></li>
+      </ol>
+
+      <h3>月間保守の例</h3>
+      <div class="table-wrap">
+        <table class="table-stack">
+          <thead><tr><th scope="col">項目</th><th scope="col">内容（例）</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">定期点検（月1回）</th><td>稼働報告・実行履歴・ログの確認、取得件数の推移の確認</td></tr>
+            <tr><th scope="row">構造変更への対応</th><td>「構造変更の可能性」の通知を受けての設定（セレクタ）の修正・動作確認</td></tr>
+            <tr><th scope="row">監視対象の追加・変更</th><td>監視するページ・項目・通知先の追加や変更</td></tr>
+            <tr><th scope="row">入力画面の変更対応</th><td>管理画面の項目追加・レイアウト変更に合わせた設定の修正</td></tr>
+            <tr><th scope="row">環境の更新</th><td>Python・ライブラリの更新と動作確認</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">保守の範囲・頻度は、対象サイトの数や更新の頻度に応じて個別にご相談させてください。</p>
+    </section>
+
+    <!-- ===== 対応しないこと・注意点 ===== -->
+    <section class="content-section" id="limits" aria-labelledby="limits-title">
+      <h2 id="limits-title">対応しないこと・注意点</h2>
+      <p>このツールは、Webサイトの運営者と利用規約を尊重した利用を前提としています。次のことには対応いたしません。</p>
+      <ul class="ng-list">
+        <li><strong>CAPTCHA（ロボットでないことの確認）・ログイン制限・IP制限など、アクセス制限の回避</strong></li>
+        <li><strong>利用規約で禁止されている収集</strong>、および許可なく会員限定ページを収集すること</li>
+        <li><strong>過度な高頻度アクセス</strong>（外部サイトへのアクセス間隔は最低1秒、ページ送りは1つの URL あたり最大200ページに制限しています）</li>
+        <li><strong>自動購入・自動入札・予約枠の自動確保</strong>などの取引の自動化</li>
+        <li><strong>正当な権限のないシステムへの自動入力</strong>（入力自動化は、お客様が操作権限をお持ちのシステムに限ります）</li>
+      </ul>
+      <p class="note">robots.txt で禁止されているページは取得しません。収集した情報の利用は、著作権法・個人情報保護法などの関連法令に従ってください。サイトのデザインが変わった場合は、設定の修正が必要になることがあります。</p>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="content-section" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">よくある質問</h2>
+      <div class="faq">
+        <details>
+          <summary>どんなサイトでも監視できますか？</summary>
+          <div class="answer"><p>利用規約と robots.txt で自動での取得が認められているページが対象です。導入前に確認し、認められていないサイトはお引き受けしません。表示に JavaScript が必要なページにも対応しています。</p></div>
+        </details>
+        <details>
+          <summary>毎日自動で動かせますか？</summary>
+          <div class="answer"><p>はい。Windows はタスクスケジューラ（決まった時刻にプログラムを動かす Windows の機能）に、ダブルクリックで毎日9:00の実行を登録できます。Mac も登録用のスクリプトを用意しています。時刻は変更できます。</p></div>
+        </details>
+        <details>
+          <summary>ちゃんと動いているか、どうやって分かりますか？</summary>
+          <div class="answer"><p>1日1回の「稼働報告」で、変化がない日もサイトごとの最終実行日時・取得件数・状態が届きます。メニューの「監視の状況を確認する」でも、いつでも確認できます。</p></div>
+        </details>
+        <details>
+          <summary>サイトのデザインが変わったらどうなりますか？</summary>
+          <div class="answer"><p>「構造変更の可能性」の通知が届き、その回のデータは比較の基準に使いません。誤った「掲載終了」「価格変動」の通知が大量に届くことはありません。設定（セレクタ）を直してから、通常の監視に戻します。</p></div>
+        </details>
+        <details>
+          <summary>入力自動化で、同じ商品を二重に登録してしまうことはありませんか？</summary>
+          <div class="answer"><p>実行前に CSV 内の重複をチェックし、重複している行は送信しません。また、登録の途中で止まった行は「要確認」にして、再実行しても自動では送信しないようにしています。</p></div>
+        </details>
+        <details>
+          <summary>本番の前に試せますか？</summary>
+          <div class="answer"><p>はい。テスト実行では入力までを行い、登録ボタンは押しません。入力後の画面をスクリーンショットで確認できます。</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== お問い合わせ ===== -->
+    <section class="content-section" id="contact" aria-labelledby="contact-title">
+      <div class="cta-band">
+        <h2 id="contact-title">お問い合わせ</h2>
+        <p>監視したいサイト（URL）・項目・頻度や、入力したい画面と CSV の内容をお聞かせください。ご相談は、各プラットフォームのメッセージ機能からお願いします。</p>
+        <p class="mb-0"><a class="btn" href="/#contact">お問い合わせ方法を見る</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <nav aria-label="フッターメニュー">
+      <ul>
+        <li><a href="/">トップ</a></li>
+        <li><a href="/works/chohyo/">帳票データ取り出しツール</a></li>
+        <li><a href="/works/ai-inbox/">AI 受付アシスタント</a></li>
+        <li><a href="/works/web-monitor/" aria-current="page">Web監視・入力自動化</a></li>
+        <li><a href="/#contact">お問い合わせ</a></li>
+        <li><a href="/en/" lang="en" hreflang="en">English</a></li>
+      </ul>
+    </nav>
+    <p class="disclaimer">掲載している会社名・商品名・数値はすべて架空のデモデータです。</p>
+    <p>本サイトは外部の解析ツール・広告を使用していません。</p>
+    <!-- EDIT: 表示名 -->
+    <p>© 2026 <span class="todo">要入力</span></p>
+    <!-- /EDIT -->
+  </div>
+</footer>
+</body>
+</html>
