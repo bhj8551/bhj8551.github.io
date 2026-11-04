@@ -1,0 +1,7 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# 検証用スクリーンショット（コミットしない）
+_check/

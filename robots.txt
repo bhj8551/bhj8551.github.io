@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+Disallow: /EDIT_ME.md
+Disallow: /ASSETS_TODO.md
+
+Sitemap: https://bhj8551.github.io/sitemap.xml

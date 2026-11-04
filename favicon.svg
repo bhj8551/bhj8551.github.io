@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="業務自動化ツール開発">
+  <rect width="64" height="64" rx="14" fill="#1f4e79"/>
+  <rect x="15" y="12" width="26" height="34" rx="3" fill="#ffffff"/>
+  <rect x="20" y="19" width="16" height="3" rx="1.5" fill="#9fb7cf"/>
+  <rect x="20" y="26" width="16" height="3" rx="1.5" fill="#9fb7cf"/>
+  <rect x="20" y="33" width="10" height="3" rx="1.5" fill="#9fb7cf"/>
+  <circle cx="44" cy="44" r="12" fill="#0b6e66" stroke="#1f4e79" stroke-width="3"/>
+  <path d="M38.5 44.5l4 4 7.5-8.5" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
