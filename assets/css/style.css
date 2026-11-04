@@ -21,6 +21,7 @@
   --check-text: #5c4600;
   --warn-bg: #fff6e5;
   --warn-border: #c27c0e;
+  --todo: #9a4d00;
   --note-bg: #eef3f9;
   --code-bg: #f6f8fa;
   --focus: #c2410c;
@@ -49,6 +50,7 @@
     --check-text: #fff1b8;
     --warn-bg: #2d2310;
     --warn-border: #d99a2b;
+    --todo: #f0b34a;
     --note-bg: #18263a;
     --code-bg: #121922;
     --focus: #ffb37a;
@@ -72,6 +74,7 @@
   --check-text: #fff1b8;
   --warn-bg: #2d2310;
   --warn-border: #d99a2b;
+  --todo: #f0b34a;
   --note-bg: #18263a;
   --code-bg: #121922;
   --focus: #ffb37a;
@@ -199,6 +202,10 @@ main { display: block; }
 .btn--pending {
   background: var(--bg-alt); border: 2px dashed var(--border); color: var(--muted); cursor: default; font-weight: 700;
 }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .btn--pending { color: var(--muted); }
+}
+:root[data-theme="dark"] .btn--pending { color: var(--muted); }
 
 /* ---------- chips / badges ---------- */
 .chip {
@@ -400,7 +407,7 @@ figcaption { font-size: 0.86rem; color: var(--muted); margin-top: 8px; }
 @media (min-width: 560px) { .dl-grid > div { grid-template-columns: 9em 1fr; gap: 12px; } }
 .dl-grid dt { font-weight: 700; color: var(--muted); font-size: 0.9rem; }
 .dl-grid dd { margin: 0; }
-.todo { color: var(--warn-border); font-weight: 700; }
+.todo { color: var(--todo); font-weight: 700; }
 .platforms { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
 .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
 .cta-band { background: var(--primary-soft); border-radius: var(--radius); padding: 24px; }
